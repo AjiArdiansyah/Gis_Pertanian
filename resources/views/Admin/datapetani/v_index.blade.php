@@ -3,18 +3,23 @@
 @section('content')
 
 <div class="col-md-12">
-            <div class="card card-primary">
+            <div class="card card-outline card-primary">
               <div class="card-header">
                 <h3 class="card-title">{{$title}}</h3>
 
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
+                  <a href="/data_petani/add" type="button" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i>Add</a>
                 </div>
                 <!-- /.card-tools -->
               </div>
               <!-- /.card-header -->
               <div class="card-body">
+                @if(session('pesan'))
+                <div class="alert alert-success alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h5><i class="icon fas fa-check"></i> {{ session('pesan') }}</h5> 
+                </div>
+                @endif
               <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>

@@ -21,6 +21,44 @@ class DataPetaniController extends Controller
             'title'=> 'DataPetani',
             'datapetani' => $this->DataPetaniModel->AllData(),
         ];
-        return view('Admin.datapetani/v_index', $data);
+        return view('Admin.datapetani.v_index', $data);
+    }
+
+    public function add()
+    {
+        $data = [
+            'title'=> 'Add Data Petani',
+        ];
+        return view('Admin.datapetani.v_add', $data);
+    }
+    public function insert()
+    {
+        Request()->validate([
+            'nama_petani' => 'required',
+            'alamat' => 'required',
+            'tanggal_lahir' => 'required',
+            'luas' => 'required',
+
+        ],
+        [
+            'nama_petani.required' => 'Wajib Diisi !!!',
+            'alamat.required' => 'Wajib Diisi !!!',
+            'tanggal_lahir.required' => 'Wajib Diisi !!!',
+            'luas.required' => 'Wajib Diisi !!!',
+        ]
+    );
+
+    //
+
+    $data = [
+        'nama_petani' => Request()->nama_petani,
+        'alamat' => Request()->alamat,
+        'tanggal_lahir' => Request()->tanggal_lahir,
+        'luas' => Request()->luas,
+
+    ];
+    $this->DataPetaniModel->InsertData($data);
+    return redirect()->route('data_petani')->with('pesan','Data Berhasil Ditambahkan');
     }
 }
+

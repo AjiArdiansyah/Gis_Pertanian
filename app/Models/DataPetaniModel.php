@@ -12,5 +12,11 @@ class DataPetaniModel extends Model
     {
         return DB::table('tbl_datapetani')->get();
     }
+
+    public function InsertData($data)
+    {
+        DB::table('tbl_datapetani')->insert($data);
+
+    }
     
 }

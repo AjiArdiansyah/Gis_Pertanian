@@ -23,4 +23,8 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // Data Petani
-Route::get('/data_petani', [DataPetaniController::class, 'index']);
+Route::get('/data_petani', [DataPetaniController::class, 'index'])->name('data_petani');
+
+Route::get('/data_petani/add', [DataPetaniController::class, 'add']);
+
+Route::post('/data_petani/insert', [DataPetaniController::class, 'insert']);
