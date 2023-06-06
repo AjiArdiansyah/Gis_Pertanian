@@ -28,3 +28,7 @@ Route::get('/data_petani', [DataPetaniController::class, 'index'])->name('data_p
 Route::get('/data_petani/add', [DataPetaniController::class, 'add']);
 
 Route::post('/data_petani/insert', [DataPetaniController::class, 'insert']);
+
+Route::get('/data_petani/edit/{id_petani}', [DataPetaniController::class, 'edit']);
+
+Route::post('/data_petani/update/{id_petani}', [DataPetaniController::class, 'update']);

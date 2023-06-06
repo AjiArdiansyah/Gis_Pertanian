@@ -60,5 +60,44 @@ class DataPetaniController extends Controller
     $this->DataPetaniModel->InsertData($data);
     return redirect()->route('data_petani')->with('pesan','Data Berhasil Ditambahkan');
     }
+
+    public function edit($id_petani)
+    {
+        $data = [
+            'title'=> 'Edit Data Petani',
+            'datapetani' => $this->DataPetaniModel->DetailData($id_petani),
+        ];
+        return view('Admin.datapetani.v_edit', $data);
+    }
+
+    public function update($id_petani)
+    {
+        Request()->validate([
+            'nama_petani' => 'required',
+            'alamat' => 'required',
+            'tanggal_lahir' => 'required',
+            'luas' => 'required',
+
+        ],
+        [
+            'nama_petani.required' => 'Wajib Diisi !!!',
+            'alamat.required' => 'Wajib Diisi !!!',
+            'tanggal_lahir.required' => 'Wajib Diisi !!!',
+            'luas.required' => 'Wajib Diisi !!!',
+        ]
+    );
+
+    //
+
+    $data = [
+        'nama_petani' => Request()->nama_petani,
+        'alamat' => Request()->alamat,
+        'tanggal_lahir' => Request()->tanggal_lahir,
+        'luas' => Request()->luas,
+
+    ];
+    $this->DataPetaniModel->UpdateData($id_petani, $data);
+    return redirect()->route('data_petani')->with('pesan','Data Berhasil Update');
+    }
 }
 

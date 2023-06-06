@@ -18,5 +18,18 @@ class DataPetaniModel extends Model
         DB::table('tbl_datapetani')->insert($data);
 
     }
+
+    public function DetailData($id_petani)
+    {
+        return DB::table('tbl_datapetani')->where('id_petani', $id_petani)->first();
+    }
+
+    public function UpdateData($id_petani, $data)
+    {
+        DB::table('tbl_datapetani')
+        ->where('id_petani', $id_petani)
+        ->update($data);
+
+    }
     
 }

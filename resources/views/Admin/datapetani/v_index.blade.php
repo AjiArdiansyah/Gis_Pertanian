@@ -23,11 +23,12 @@
               <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
-                      <td>Id Petani</td>
-                      <td>Nama Petani</td>
-                      <td>Alamat</td>
-                      <td>Tanggal Lahir</td>
-                      <td>Luas Lahan</td>
+                      <td class="text-center">Id Petani</td>
+                      <td class="text-center">Nama Petani</td>
+                      <td class="text-center">Alamat</td>
+                      <td class="text-center">Tanggal Lahir</td>
+                      <td class="text-center">Luas Lahan</td>
+                      <td class="text-center">Action</td>
                     </tr>
                   </thead>
 
@@ -35,11 +36,15 @@
                     <?php $no=1; ?>
                     @foreach ($datapetani as $data)
                     <tr>
-                      <td>{{ $no++}}</td>
+                      <td class="text-center">{{ $no++}}</td>
                       <td>{{ $data->nama_petani }}</td>
                       <td>{{ $data->alamat }}</td>
                       <td>{{ $data->tanggal_lahir }}</td>
-                      <td>{{ $data->luas }}
+                      <td>{{ $data->luas }}</td>
+                      <td>
+                        <a href="/data_petani/edit/{{ $data->id_petani}}" class="btn btn-sm btn-flat btn-warning"><i class="fa fa-edit"></i></a>
+                        <a href="/data_petani/delete/{{ $data->id_petani}}" class="btn btn-sm btn-flat btn-danger"><i class="fa fa-trash"></i></a>
+                      </td>
                     </tr>
                     @endforeach
                   </tbody>
