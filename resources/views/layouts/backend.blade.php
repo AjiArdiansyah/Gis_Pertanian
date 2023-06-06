@@ -91,8 +91,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
 
-          <li class="nav-item">
-            <a href="/data_petani" class="nav-link">
+          <li class="nav-item" >
+            <a href="/data_petani" class="nav-link {{ request()->is('data_petani') ? 'active' : ''}}">
               <i class="nav-icon fas fa-child"></i>
               <p>Data Petani</p>
             </a>

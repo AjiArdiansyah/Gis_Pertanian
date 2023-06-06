@@ -99,5 +99,11 @@ class DataPetaniController extends Controller
     $this->DataPetaniModel->UpdateData($id_petani, $data);
     return redirect()->route('data_petani')->with('pesan','Data Berhasil Update');
     }
+
+    public function delete($id_petani)
+    {
+        $this->DataPetaniModel->DeleteData($id_petani);
+    return redirect()->route('data_petani')->with('pesan','Data Berhasil Delete');
+    }
 }
 

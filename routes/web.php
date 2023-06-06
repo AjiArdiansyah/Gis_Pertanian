@@ -32,3 +32,5 @@ Route::post('/data_petani/insert', [DataPetaniController::class, 'insert']);
 Route::get('/data_petani/edit/{id_petani}', [DataPetaniController::class, 'edit']);
 
 Route::post('/data_petani/update/{id_petani}', [DataPetaniController::class, 'update']);
+
+Route::get('/data_petani/delete/{id_petani}', [DataPetaniController::class, 'delete']);

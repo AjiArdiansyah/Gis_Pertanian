@@ -43,7 +43,7 @@
                       <td>{{ $data->luas }}</td>
                       <td>
                         <a href="/data_petani/edit/{{ $data->id_petani}}" class="btn btn-sm btn-flat btn-warning"><i class="fa fa-edit"></i></a>
-                        <a href="/data_petani/delete/{{ $data->id_petani}}" class="btn btn-sm btn-flat btn-danger"><i class="fa fa-trash"></i></a>
+                        <button class="btn btn-sm btn-flat btn-danger" data-toggle="modal" data-target="#delete{{ $data->id_petani }}"><i class="fa fa-trash"></i></button>
                       </td>
                     </tr>
                     @endforeach
@@ -54,5 +54,30 @@
             </div>
             <!-- /.card -->
           </div>
+
+          @foreach ($datapetani as $data)
+          <div class="modal fade" id="delete{{ $data->id_petani }}">
+        <div class="modal-dialog">
+          <div class="modal-content bg-danger">
+            <div class="modal-header">
+              <h4 class="modal-title">{{ $data->nama_petani }}</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Apakah Anda Ingin Menghapus Data Ini...?</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+              <a href="/data_petani/delete/{{ $data->id_petani }}" type="button" class="btn btn-outline-light">Save</a>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+
+          @endforeach
 
 @endsection

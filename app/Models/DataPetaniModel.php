@@ -31,5 +31,12 @@ class DataPetaniModel extends Model
         ->update($data);
 
     }
+
+    public function DeleteData($id_petani)
+    {
+        DB::table('tbl_datapetani')
+        ->where('id_petani', $id_petani)
+        ->delete();
+    }
     
 }
