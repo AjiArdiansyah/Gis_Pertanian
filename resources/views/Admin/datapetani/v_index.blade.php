@@ -23,7 +23,7 @@
               <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
-                      <td class="text-center">Id Petani</td>
+                      <td class="text-center">No</td>
                       <td class="text-center">Nama Petani</td>
                       <td class="text-center">Alamat</td>
                       <td class="text-center">Tanggal Lahir</td>

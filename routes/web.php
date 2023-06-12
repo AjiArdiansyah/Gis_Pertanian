@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\DataPetaniController;
+use App\Http\Controllers\WilayahDesaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,7 @@ Route::get('/data_petani/edit/{id_petani}', [DataPetaniController::class, 'edit'
 Route::post('/data_petani/update/{id_petani}', [DataPetaniController::class, 'update']);
 
 Route::get('/data_petani/delete/{id_petani}', [DataPetaniController::class, 'delete']);
+
+// wilayah desa
+
+Route::get('/wilayah_desa', [WilayahDesaController::class, 'index'])->name('wilayah_desa');
