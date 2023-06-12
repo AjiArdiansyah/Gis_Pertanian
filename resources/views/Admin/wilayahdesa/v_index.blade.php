@@ -8,7 +8,7 @@
                 <h3 class="card-title">{{$title}}</h3>
 
                 <div class="card-tools">
-                  <a href="/data_petani/add" type="button" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i>Add</a>
+                  <a href="/wilayah_desa/add" type="button" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i>Add</a>
                 </div>
                 <!-- /.card-tools -->
               </div>
@@ -23,10 +23,11 @@
               <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
-                      <td class="text-center">No</td>
+                      <td width="50px" class="text-center">No</td>
                       <td class="text-center">Wilayah Desa</td>
-                      <td class="text-center">Warna</td>
-                      <td class="text-center">Action</td>
+                      <td width="50px" class="text-center">Warna</td>
+                      
+                      <td width="100px"  class="text-center">Action</td>
                     </tr>
                   </thead>
 
@@ -36,10 +37,8 @@
                     <tr>
                       <td class="text-center">{{ $no++}}</td>
                       <td>{{ $data->wilayah_desa }}</td>
-                      <td>{{ $data->warna }}</td>
-                      <td>{{ $data->geojson }}</td>
+                      <td style="background-color: {{ $data->warna }}"></td>
                       
-                   
                     </tr>
                     @endforeach
                   </tbody>
@@ -50,6 +49,11 @@
             <!-- /.card -->
           </div>
 
+       
+
         
 
 @endsection
+
+<!-- bootstrap color picker -->
+<script src="{{ asset('AdminLTE') }}/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>

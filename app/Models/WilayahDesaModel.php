@@ -12,4 +12,10 @@ class WilayahDesaModel extends Model
     {
         return DB::table('tbl_wilayahdesa')->get();
     }
+
+    public function InsertData($data)
+    {
+        DB::table('tbl_wilayahdesa')->insert($data);
+
+    }
 }

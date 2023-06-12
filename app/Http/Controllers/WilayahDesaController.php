@@ -24,4 +24,45 @@ class WilayahDesaController extends Controller
         ];
         return view('Admin.wilayahdesa.v_index', $data);
     }
+
+    public function add()
+    {
+        $data = [
+            'title'=> 'Add Wilayah Desa',
+        ];
+        return view('Admin.wilayahdesa.v_add', $data);
+    }
+
+    public function insert()
+    {
+        Request()->validate(
+        [
+            'wilayah_desa' => 'required',
+            'warna' => 'required',
+            'geojson' => 'required',
+            
+
+        ],
+        [
+            'wilayah_desa.required' => 'Wajib Diisi !!!',
+            'warna.required' => 'Wajib Diisi !!!',
+            'geojson.required' => 'Wajib Diisi !!!',
+            
+        ]
+    );
+
+    //jika validasinya tidak ada maka lakukan simpan data ke database
+    $data = [
+        'wilayah_desa' => Request()->wilayah_desa,
+        'warna' => Request()->warna,
+        'geojson' => Request()->geosjon,
+    ];
+    $this->WilayahDesaModel->InsertData($data);
+    return redirect()->route('wilayah_desa')->with('pesan','Data Berhasil Ditambahkan');
+
+
+    }
+    
+
 }
+

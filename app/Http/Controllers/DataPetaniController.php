@@ -24,6 +24,8 @@ class DataPetaniController extends Controller
         return view('Admin.datapetani.v_index', $data);
     }
 
+    //tambah data
+
     public function add()
     {
         $data = [
@@ -31,6 +33,7 @@ class DataPetaniController extends Controller
         ];
         return view('Admin.datapetani.v_add', $data);
     }
+    
     public function insert()
     {
         Request()->validate([

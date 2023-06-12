@@ -39,3 +39,7 @@ Route::get('/data_petani/delete/{id_petani}', [DataPetaniController::class, 'del
 // wilayah desa
 
 Route::get('/wilayah_desa', [WilayahDesaController::class, 'index'])->name('wilayah_desa');
+
+Route::get('/wilayah_desa/add', [WilayahDesaController::class, 'add']);
+
+Route::post('/wilayah_desa/insert', [WilayahDesaController::class, 'insert']);
