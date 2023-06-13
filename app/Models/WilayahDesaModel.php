@@ -18,4 +18,24 @@ class WilayahDesaModel extends Model
         DB::table('tbl_wilayahdesa')->insert($data);
 
     }
+
+    public function DetailData($id_wilayahdesa)
+    {
+        return DB::table('tbl_wilayahdesa')->where('id_wilayahdesa', $id_wilayahdesa)->first();
+    }
+
+    public function UpdateData($id_wilayahdesa, $data)
+    {
+        DB::table('tbl_wilayahdesa')
+        ->where('id_wilayahdesa', $id_wilayahdesa)
+        ->update($data);
+
+    }
+
+    public function DeleteData($id_wilayahdesa)
+    {
+        DB::table('tbl_wilayahdesa')
+        ->where('id_wilayahdesa', $id_wilayahdesa)
+        ->delete();
+    }
 }

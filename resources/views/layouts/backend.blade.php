@@ -117,7 +117,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
 
            <li class="nav-item" >
-            <a href="/wilayah_desa" class="nav-link {{ request()->is('data_petani') ? 'active' : ''}}">
+            <a href="/wilayah_desa" class="nav-link {{ request()->is('wilayah_desa') ? 'active' : ''}}">
               <i class="nav-icon fas fa-map-marker"></i>
               <p>Wilayah Desa</p>
             </a>

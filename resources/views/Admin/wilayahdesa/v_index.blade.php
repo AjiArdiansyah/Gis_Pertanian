@@ -26,7 +26,6 @@
                       <td width="50px" class="text-center">No</td>
                       <td class="text-center">Wilayah Desa</td>
                       <td width="50px" class="text-center">Warna</td>
-                      
                       <td width="100px"  class="text-center">Action</td>
                     </tr>
                   </thead>
@@ -38,6 +37,10 @@
                       <td class="text-center">{{ $no++}}</td>
                       <td>{{ $data->wilayah_desa }}</td>
                       <td style="background-color: {{ $data->warna }}"></td>
+                      <td>
+                      <a href="/wilayah_desa/edit/{{ $data->id_wilayahdesa}}" class="btn btn-sm btn-flat btn-warning"><i class="fa fa-edit"></i></a>
+                        <button class="btn btn-sm btn-flat btn-danger" data-toggle="modal" data-target="#delete{{ $data->id_wilayahdesa }}"><i class="fa fa-trash"></i></button>
+                      </td>
                       
                     </tr>
                     @endforeach
@@ -48,6 +51,31 @@
             </div>
             <!-- /.card -->
           </div>
+
+          @foreach ($wilayahdesa as $data)
+          <div class="modal fade" id="delete{{ $data->id_wilayahdesa }}">
+        <div class="modal-dialog">
+          <div class="modal-content bg-danger">
+            <div class="modal-header">
+              <h4 class="modal-title">{{ $data->wilayah_desa }}</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Apakah Anda Ingin Menghapus Data Ini...?</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+              <a href="/wilayah_desa/delete/{{ $data->id_wilayahdesa }}" type="button" class="btn btn-outline-light">Save</a>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+
+          @endforeach
 
        
 

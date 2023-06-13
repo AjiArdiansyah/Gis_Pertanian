@@ -43,3 +43,9 @@ Route::get('/wilayah_desa', [WilayahDesaController::class, 'index'])->name('wila
 Route::get('/wilayah_desa/add', [WilayahDesaController::class, 'add']);
 
 Route::post('/wilayah_desa/insert', [WilayahDesaController::class, 'insert']);
+
+Route::get('/wilayah_desa/edit/{id_wilayahdesa}', [WilayahDesaController::class, 'edit']);
+
+Route::post('/wilayah_desa/update/{id_wilayahdesa}', [WilayahDesaController::class, 'update']);
+
+Route::get('/wilayah_desa/delete/{id_wilayahdesa}', [WilayahDesaController::class, 'delete']);
