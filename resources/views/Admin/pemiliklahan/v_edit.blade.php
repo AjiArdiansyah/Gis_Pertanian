@@ -8,25 +8,25 @@
               <div class="card-body">
               <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Add Data</h3>
+                <h3 class="card-title">Edit Data</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="/data_petani/insert" method="POST">
+              <form action="/pemilik_lahan/update/{{ $pemiliklahan->id_pemiliklahan }}" method="POST">
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Nama Petani</label>
-                    <input name="nama_petani" class="form-control" id="exampleInputEmail1" placeholder="Nama Petani">
+                    <label for="exampleInputEmail1">Nama Pemilik Lahan</label>
+                    <input name="nama_pemilik" value="{{ $pemiliklahan->nama_pemilik}}" class="form-control" placeholder="Nama Pemilik">
                     <div class="text-danger">
-                        @error('nama_petani')
+                        @error('pemilik_lahan')
                         {{$message}}
                         @enderror
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Alamat</label>
-                    <input name="alamat" class="form-control" id="exampleInputPassword1" placeholder="Alamat">
+                    <input name="alamat" value="{{ $pemiliklahan->alamat}}" class="form-control" id="exampleInputPassword1" placeholder="Alamat">
                     <div class="text-danger">
                         @error('alamat')
                         {{$message}}
@@ -36,7 +36,7 @@
                   <div class="form-group">
                   <label>Tanggal Lahir</label>
                   <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                        <input name="tanggal_lahir" type="date" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                        <input name="tanggal_lahir" type="date" value="{{ $pemiliklahan->tanggal_lahir}}" class="form-control datetimepicker-input" data-target="#reservationdate"/>
                         <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                         </div>
@@ -44,7 +44,7 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Luas</label>
-                    <input name="luas" class="form-control" id="exampleInputPassword1" placeholder="Luas">
+                    <input name="luas" value="{{ $pemiliklahan->luas}}" class="form-control" id="exampleInputPassword1" placeholder="Luas">
                     <div class="text-danger">
                         @error('luas')
                         {{$message}}

@@ -28,7 +28,8 @@
   var wilayah_desa = L.layerGroup();
 
 
-  var map = L.map('map', {
+  var map = L.map('map',  {
+    drawControl: true,
     center: [-7.250043590465663, 111.94933296451791],
     zoom: 17,
     layers: [peta1, wilayah_desa]

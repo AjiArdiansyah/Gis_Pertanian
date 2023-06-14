@@ -8,7 +8,7 @@
                 <h3 class="card-title">{{$title}}</h3>
 
                 <div class="card-tools">
-                  <a href="/data_petani/add" type="button" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i>Add</a>
+                  <a href="/pemilik_lahan/add" type="button" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i>Add</a>
                 </div>
                 <!-- /.card-tools -->
               </div>
@@ -24,7 +24,7 @@
                   <thead>
                     <tr>
                       <td class="text-center">No</td>
-                      <td class="text-center">Nama Petani</td>
+                      <td class="text-center">Nama Pemilik Lahan</td>
                       <td class="text-center">Alamat</td>
                       <td class="text-center">Tanggal Lahir</td>
                       <td class="text-center">Luas Lahan</td>
@@ -34,16 +34,16 @@
 
                   <tbody>
                     <?php $no=1; ?>
-                    @foreach ($datapetani as $data)
+                    @foreach ($pemiliklahan as $data)
                     <tr>
                       <td class="text-center">{{ $no++}}</td>
-                      <td>{{ $data->nama_petani }}</td>
+                      <td>{{ $data->nama_pemilik }}</td>
                       <td>{{ $data->alamat }}</td>
                       <td>{{ $data->tanggal_lahir }}</td>
                       <td>{{ $data->luas }}</td>
                       <td>
-                        <a href="/data_petani/edit/{{ $data->id_petani}}" class="btn btn-sm btn-flat btn-warning"><i class="fa fa-edit"></i></a>
-                        <button class="btn btn-sm btn-flat btn-danger" data-toggle="modal" data-target="#delete{{ $data->id_petani }}"><i class="fa fa-trash"></i></button>
+                        <a href="/pemilik_lahan/edit/{{ $data->id_pemiliklahan}}" class="btn btn-sm btn-flat btn-warning"><i class="fa fa-edit"></i></a>
+                        <button class="btn btn-sm btn-flat btn-danger" data-toggle="modal" data-target="#delete{{ $data->id_pemiliklahan }}"><i class="fa fa-trash"></i></button>
                       </td>
                     </tr>
                     @endforeach
@@ -55,12 +55,12 @@
             <!-- /.card -->
           </div>
 
-          @foreach ($datapetani as $data)
-          <div class="modal fade" id="delete{{ $data->id_petani }}">
+          @foreach ($pemiliklahan as $data)
+          <div class="modal fade" id="delete{{ $data->id_pemiliklahan }}">
         <div class="modal-dialog">
           <div class="modal-content bg-danger">
             <div class="modal-header">
-              <h4 class="modal-title">{{ $data->nama_petani }}</h4>
+              <h4 class="modal-title">{{ $data->nama_pemilik }}</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -70,7 +70,7 @@
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
-              <a href="/data_petani/delete/{{ $data->id_petani }}" type="button" class="btn btn-outline-light">Save</a>
+              <a href="/pemilik_lahan/delete/{{ $data->id_pemiliklahan }}" type="button" class="btn btn-outline-light">Save</a>
             </div>
           </div>
           <!-- /.modal-content -->

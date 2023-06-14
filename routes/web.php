@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WebController;
-use App\Http\Controllers\DataPetaniController;
+use App\Http\Controllers\PemilikLahanController;
 use App\Http\Controllers\WilayahDesaController;
 
 /*
@@ -23,18 +23,18 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-// Data Petani
-Route::get('/data_petani', [DataPetaniController::class, 'index'])->name('data_petani');
+// Data Pemilik lahan
+Route::get('/pemilik_lahan', [PemilikLahanController::class, 'index'])->name('pemilik_lahan');
 
-Route::get('/data_petani/add', [DataPetaniController::class, 'add']);
+Route::get('/pemilik_lahan/add', [PemilikLahanController::class, 'add']);
 
-Route::post('/data_petani/insert', [DataPetaniController::class, 'insert']);
+Route::post('/pemilik_lahan/insert', [PemilikLahanController::class, 'insert']);
 
-Route::get('/data_petani/edit/{id_petani}', [DataPetaniController::class, 'edit']);
+Route::get('/pemilik_lahan/edit/{id_pemiliklahan}', [PemilikLahanController::class, 'edit']);
 
-Route::post('/data_petani/update/{id_petani}', [DataPetaniController::class, 'update']);
+Route::post('/pemilik_lahan/update/{id_pemiliklahan}', [PemilikLahanController::class, 'update']);
 
-Route::get('/data_petani/delete/{id_petani}', [DataPetaniController::class, 'delete']);
+Route::get('/pemilik_lahan/delete/{id_pemiliklahan}', [PemilikLahanController::class, 'delete']);
 
 // wilayah desa
 
