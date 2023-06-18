@@ -12,62 +12,85 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <title>AdminLTE 3 | Starter</title>
 
+<!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/fontawesome-free/css/all.min.css') }}">
   <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="{{ asset('AdminLTE')}}/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+   <!-- iCheck -->
+   <link rel="stylesheet" href="{{ asset('AdminLTE')}}/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="{{ asset('AdminLTE')}}/plugins/jqvmap/jqvmap.min.css">
   <!-- DataTables -->
-  <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('AdminLTE')}}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="{{ asset('AdminLTE')}}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <!-- Bootstrap Color Picker -->
   <link rel="stylesheet" href="{{ asset('AdminLTE')}}/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('AdminLTE/dist/css/adminlte.min.css') }}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
   <!-- daterange picker -->
   <link rel="stylesheet" href="{{ asset('AdminLTE')}}/plugins/daterangepicker/daterangepicker.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="{{ asset('AdminLTE')}}/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+   <!-- Daterange picker -->
+   <link rel="stylesheet" href="{{ asset('AdminLTE')}}/plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="{{ asset('AdminLTE')}}/plugins/summernote/summernote-bs4.css">
+
+  
 
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="{{ asset('AdminLTE')}}/plugins/fontawesome-free/css/all.min.css">
   <!-- IonIcons -->
   <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="{{ asset('AdminLTE')}}/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
+  
 
-</head>
-
-<!-- jQuery -->
+  <!-- jQuery -->
 <script src="{{ asset('AdminLTE/plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- page script -->
+
 <!-- DataTables -->
 <script src="{{ asset('AdminLTE/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('AdminLTE/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('AdminLTE/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
 <script src="{{ asset('AdminLTE/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+
 <!-- AdminLTE App -->
-<script src="{{ asset('AdminLTE/dist/js/adminlte.min.js') }}"></script>
+<script src="{{ asset('AdminLTE')}}/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{ asset('AdminLTE/dist/js/demo.js') }}"></script>
-<!-- page script -->
+<script src="{{ asset('AdminLTE')}}/dist/js/demo.js'"></script>
+
+<!--Leaflet-->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+ integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
 
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
 
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
       <!-- Left navbar links -->
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-        </li>
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
 
         <li><a href="#" class="nav-link">
             <h4>Sistem Pemetahan Lahan</h4>
@@ -139,6 +162,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <p>Wilayah Desa</p>
               </a>
             </li>
+
+            <li class="nav-item">
+              <a href="/data_lahan" class="nav-link {{ request()->is('data_lahan') ? 'active' : ''}}">
+                <i class="nav-icon fas fa-map-marker"></i>
+                <p>Data Lahan</p>
+              </a>
+            </li>
+
 
             <li class="nav-item">
               <a href="#" class="nav-link">
@@ -239,24 +270,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- REQUIRED SCRIPTS -->
 
   <!-- jQuery -->
-  <script src="{{ asset('AdminLTE/plugins/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('AdminLTE')}}/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
-  <script src="{{ asset('AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('AdminLTE')}}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- DataTables -->
-  <script src="{{ asset('AdminLTE/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-  <script src="{{ asset('AdminLTE/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-  <script src="{{ asset('AdminLTE/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-  <script src="{{ asset('AdminLTE/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+  <script src="{{ asset('AdminLTE')}}/plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="{{ asset('AdminLTE')}}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="{{ asset('AdminLTE')}}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="{{ asset('AdminLTE')}}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
   <!-- AdminLTE App -->
-  <script src="{{ asset('AdminLTE/dist/js/adminlte.min.js') }}"></script>
+  <script src="{{ asset('AdminLTE')}}/dist/js/adminlte.min.js"></script>
   <!-- AdminLTE for demo purposes -->
-  <script src="{{ asset('AdminLTE/dist/js/demo.js') }}"></script>
+  <script src="{{ asset('AdminLTE')}}/dist/js/demo.js"></script>
   <!-- page script -->
 
-  <!-- OPTIONAL SCRIPTS -->
-  <script src="plugins/chart.js/Chart.min.js"></script>
-  <script src="dist/js/demo.js"></script>
-  <script src="dist/js/pages/dashboard3.js"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('AdminLTE')}}/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{ asset('AdminLTE')}}/dist/js/demo.js'"></script>
 
 
 
@@ -290,41 +321,45 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- date-range-picker -->
   <script src="{{ asset('AdminLTE')}}/plugins/daterangepicker/daterangepicker.js"></script>
 
-  <!-- jQuery -->
-  <script src="plugins/jquery/jquery.min.js"></script>
-  <!-- jQuery UI 1.11.4 -->
-  <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
-  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+ <!-- jQuery -->
+ <script src="{{ asset('AdminLTE')}}/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="{{ asset('AdminLTE')}}/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 
-  <!-- Bootstrap 4 -->
-  <script src="{{ asset('AdminLTE')}}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- ChartJS -->
-  <script src="plugins/chart.js/Chart.min.js"></script>
-  <!-- Sparkline -->
-  <script src="plugins/sparklines/sparkline.js"></script>
-  <!-- JQVMap -->
-  <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
-  <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-  <!-- jQuery Knob Chart -->
-  <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
-  <!-- daterangepicker -->
-  <script src="plugins/moment/moment.min.js"></script>
-  <script src="{{ asset('AdminLTE')}}/plugins/daterangepicker/daterangepicker.js"></script>
-  <!-- Tempusdominus Bootstrap 4 -->
-  <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-  <!-- Summernote -->
-  <script src="plugins/summernote/summernote-bs4.min.js"></script>
-  <!-- overlayScrollbars -->
-  <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-  <!-- AdminLTE App -->
-  <script src="{{ asset('AdminLTE')}}/dist/js/adminlte.js"></script>
-  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="{{ asset('AdminLTE')}}/dist/js/pages/dashboard.js"></script>
-  <!-- AdminLTE for demo purposes -->
-  <script src="{{ asset('AdminLTE')}}/dist/js/demo.js"></script>
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
 
-  <!-- AdminLTE App -->
-  <script src="{{ asset('AdminLTE')}}/dist/js/adminlte.js"></script>
+<script src="{{ asset('AdminLTE')}}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="{{ asset('AdminLTE')}}/plugins/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="{{ asset('AdminLTE')}}/plugins/sparklines/sparkline.js"></script>
+<!-- JQVMap -->
+<script src="{{ asset('AdminLTE')}}/plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="{{ asset('AdminLTE')}}/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="{{ asset('AdminLTE')}}/plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="{{ asset('AdminLTE')}}/plugins/moment/moment.min.js"></script>
+<script src="{{ asset('AdminLTE')}}/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="{{ asset('AdminLTE')}}/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="{{ asset('AdminLTE')}}/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="{{ asset('AdminLTE')}}/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('AdminLTE')}}/dist/js/adminlte.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="{{ asset('AdminLTE')}}/dist/js/pages/dashboard.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{ asset('AdminLTE')}}/dist/js/demo.js"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('AdminLTE')}}/dist/js/adminlte.js"></script>
+
+ 
 
 
 </body>

@@ -48,6 +48,7 @@
   };
 
   var layerControl = L.control.layers(baseMaps, overlayer).addTo(map);
+  L.control.layers(baseMaps).addTop(map);
 
   @foreach ($wilayahdesa as $data)
   L.geoJSON(<?= $data->geojson ?>,{
