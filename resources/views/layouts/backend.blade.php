@@ -43,7 +43,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('AdminLTE')}}/plugins/summernote/summernote-bs4.css">
 
-  
+  <!-- CDN-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.5.1/leaflet.draw.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.5.1/leaflet.draw.js"></script>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{ asset('AdminLTE')}}/plugins/fontawesome-free/css/all.min.css">

@@ -41,7 +41,7 @@
                       <td>{{ $data->nama_lahan }}</td>
                       <td>{{ $data->nama_pemilik }}</td>
                       <td>{{ $data->keterangan }}</td>
-                      <td>{{ $data->gambar }}</td>
+                      <td class="text-center"><img src="{{ asset('gambar') }}/{{ $data->gambar }}" width="100px" height="75px"></td>
                       <td>{{ $data->geojson }}</td>
                       <td>
                         <a href="/data_lahan/edit/{{ $data->id_datalahan}}" class="btn btn-sm btn-flat btn-warning"><i class="fa fa-edit"></i></a>
