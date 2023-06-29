@@ -134,7 +134,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="{{ asset('AdminLTE/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+            <img src="{{ asset('foto') }}/{{ Auth::user()->foto }}" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
             <a href="#" class="d-block">{{ Auth::user()->name }}</a>
@@ -176,7 +176,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="/user" class="nav-link {{ request()->is('user') ? 'active' : ''}}">
                 <i class="nav-icon fas fa-user"></i>
                 <p>User</p>
               </a>

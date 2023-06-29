@@ -6,6 +6,7 @@ use App\Http\Controllers\WebController;
 use App\Http\Controllers\PemilikLahanController;
 use App\Http\Controllers\WilayahDesaController;
 use App\Http\Controllers\DataLahanController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,3 +64,16 @@ Route::get('/data_lahan/edit/{id_datalahan}', [DataLahanController::class, 'edit
 Route::post('/data_lahan/update/{id_datalahan}', [DataLahanController::class, 'update']);
 
 Route::get('/data_lahan/delete/{id_datalahan}', [DataLahanController::class, 'delete']);
+
+//user
+Route::get('/user', [UserController::class, 'index'])->name('user');
+
+//Route::get('/data_lahan/add', [DataLahanController::class, 'add']);
+
+//Route::post('/data_lahan/insert', [DataLahanController::class, 'insert']);
+
+//Route::get('/data_lahan/edit/{id_datalahan}', [DataLahanController::class, 'edit']);
+
+//Route::post('/data_lahan/update/{id_datalahan}', [DataLahanController::class, 'update']);
+
+//Route::get('/data_lahan/delete/{id_datalahan}', [DataLahanController::class, 'delete']);

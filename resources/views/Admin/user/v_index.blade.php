@@ -8,7 +8,7 @@
                 <h3 class="card-title">{{$title}}</h3>
 
                 <div class="card-tools">
-                  <a href="/pemilik_lahan/add" type="button" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i>Add</a>
+                  <a href="/user/add" type="button" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i>Add</a>
                 </div>
                 <!-- /.card-tools -->
               </div>
@@ -24,26 +24,26 @@
                   <thead>
                     <tr>
                       <th class="text-center">No</th>
-                      <th class="text-center">Nama Pemilik Lahan</th>
-                      <th class="text-center">Alamat</th>
-                      <th class="text-center">Tanggal Lahir</th>
-                      <th class="text-center">Luas Lahan</th>
+                      <th class="text-center">Nama User</th>
+                      <th class="text-center">Email</th>
+                      <th class="text-center">Password</th>
+                      <th class="text-center">Gambar</th>
                       <th class="text-center">Action</th>
                     </tr>
                   </thead>
 
                   <tbody>
                     <?php $no=1; ?>
-                    @foreach ($pemiliklahan as $data)
+                    @foreach ($user as $data)
                     <tr>
                       <td class="text-center">{{ $no++}}</td>
-                      <td>{{ $data->nama_pemilik }}</td>
-                      <td>{{ $data->alamat }}</td>
-                      <td>{{ $data->tanggal_lahir }}</td>
-                      <td>{{ $data->luas }}</td>
+                      <td>{{ $data->name }}</td>
+                      <td>{{ $data->email }}</td>
+                      <td>{{ $data->password }}</td>
+                      <td class="text-center"><img src="{{ asset('foto') }}/{{ $data->foto }}" width="100px" height="75px"></td>
                       <td>
-                        <a href="/pemilik_lahan/edit/{{ $data->id_pemiliklahan}}" class="btn btn-sm btn-flat btn-warning"><i class="fa fa-edit"></i></a>
-                        <button class="btn btn-sm btn-flat btn-danger" data-toggle="modal" data-target="#delete{{ $data->id_pemiliklahan }}"><i class="fa fa-trash"></i></button>
+                        <a href="/user/edit/{{ $data->id}}" class="btn btn-sm btn-flat btn-warning"><i class="fa fa-edit"></i></a>
+                        <button class="btn btn-sm btn-flat btn-danger" data-toggle="modal" data-target="#delete{{ $data->id }}"><i class="fa fa-trash"></i></button>
                       </td>
                     </tr>
                     @endforeach
@@ -55,12 +55,12 @@
             <!-- /.card -->
           </div>
 
-          @foreach ($pemiliklahan as $data)
-          <div class="modal fade" id="delete{{ $data->id_pemiliklahan }}">
+          @foreach ($user as $data)
+          <div class="modal fade" id="delete{{ $data->id }}">
         <div class="modal-dialog">
           <div class="modal-content bg-danger">
             <div class="modal-header">
-              <h4 class="modal-title">{{ $data->nama_pemilik }}</h4>
+              <h4 class="modal-title">{{ $data->email }}</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -70,7 +70,7 @@
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
-              <a href="/pemilik_lahan/delete/{{ $data->id_pemiliklahan }}" type="button" class="btn btn-outline-light">Save</a>
+              <a href="/user/delete/{{ $data->id }}" type="button" class="btn btn-outline-light">Save</a>
             </div>
           </div>
           <!-- /.modal-content -->

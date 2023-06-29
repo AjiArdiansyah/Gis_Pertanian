@@ -23,10 +23,10 @@
               <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
-                      <td width="50px" class="text-center">No</td>
-                      <td class="text-center">Wilayah Desa</td>
-                      <td width="50px" class="text-center">Warna</td>
-                      <td width="100px"  class="text-center">Action</td>
+                      <th width="50px" class="text-center">No</th>
+                      <th class="text-center">Wilayah Desa</th>
+                      <th width="50px" class="text-center">Warna</th>
+                      <th width="100px"  class="text-center">Action</th>
                     </tr>
                   </thead>
 

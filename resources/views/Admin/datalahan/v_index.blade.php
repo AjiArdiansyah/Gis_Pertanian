@@ -23,13 +23,13 @@
               <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
-                      <td class="text-center">No</td>
-                      <td class="text-center">Nama Lahan</td>
-                      <td class="text-center">Pemilik Lahan</td>
-                      <td class="text-center">Keterangan</td>
-                      <td class="text-center">Gambar</td>
-                      <td width="100px" class="text-center">Geojson</td>
-                      <td class="text-center">Action</td>
+                      <th class="text-center">No</th>
+                      <th class="text-center">Nama Lahan</th>
+                      <th class="text-center">Pemilik Lahan</th>
+                      <th class="text-center">Keterangan</th>
+                      <th class="text-center">Gambar</th>
+                      <th width="100px" class="text-center">Geojson</th>
+                      <th class="text-center">Action</th>
                     </tr>
                   </thead>
 
