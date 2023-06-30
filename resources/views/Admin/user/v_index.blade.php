@@ -26,7 +26,7 @@
                       <th class="text-center">No</th>
                       <th class="text-center">Nama User</th>
                       <th class="text-center">Email</th>
-                      <th class="text-center">Password</th>
+                      <th width="100px" class="text-center">Password</th>
                       <th class="text-center">Gambar</th>
                       <th class="text-center">Action</th>
                     </tr>

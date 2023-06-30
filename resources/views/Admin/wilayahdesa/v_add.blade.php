@@ -63,7 +63,7 @@
         </div>
         <div class="card-footer">
             <button type="submit" class="btn btn-info"><i class="fa fa-save"></i>Simpan</button>
-            <button type="submit" class="btn btn-warning float-right">Cancel</button>
+            <a href="/wilayah_desa" class="btn btn-warning float-right">Cancel</a>
         </div>
         </form>
 

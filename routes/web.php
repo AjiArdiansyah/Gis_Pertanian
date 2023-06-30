@@ -68,12 +68,12 @@ Route::get('/data_lahan/delete/{id_datalahan}', [DataLahanController::class, 'de
 //user
 Route::get('/user', [UserController::class, 'index'])->name('user');
 
-//Route::get('/data_lahan/add', [DataLahanController::class, 'add']);
+Route::get('/user/add', [UserController::class, 'add']);
 
-//Route::post('/data_lahan/insert', [DataLahanController::class, 'insert']);
+Route::post('/user/insert', [UserController::class, 'insert']);
 
-//Route::get('/data_lahan/edit/{id_datalahan}', [DataLahanController::class, 'edit']);
+Route::get('/user/edit/{id_datalahan}', [UserController::class, 'edit']);
 
-//Route::post('/data_lahan/update/{id_datalahan}', [DataLahanController::class, 'update']);
+Route::post('/user/update/{id_datalahan}', [UserController::class, 'update']);
 
-//Route::get('/data_lahan/delete/{id_datalahan}', [DataLahanController::class, 'delete']);
+Route::get('/user/delete/{id_datalahan}', [UserController::class, 'delete']);
