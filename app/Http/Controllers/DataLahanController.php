@@ -108,7 +108,7 @@ class DataLahanController extends Controller
 
         //jika ingin ganti gambar
         $file = Request()->gambar;
-        $filename = $file->getClientOrigininalName();
+        $filename = $file->GetClientOriginalExtension();
         $file->move(public_path('gambar'), $filename);
 
         $data = [

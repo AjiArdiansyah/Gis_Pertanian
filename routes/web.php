@@ -72,8 +72,8 @@ Route::get('/user/add', [UserController::class, 'add']);
 
 Route::post('/user/insert', [UserController::class, 'insert']);
 
-Route::get('/user/edit/{id_datalahan}', [UserController::class, 'edit']);
+Route::get('/user/edit/{id}', [UserController::class, 'edit']);
 
-Route::post('/user/update/{id_datalahan}', [UserController::class, 'update']);
+Route::post('/user/update/{id}', [UserController::class, 'update']);
 
-Route::get('/user/delete/{id_datalahan}', [UserController::class, 'delete']);
+Route::get('/user/delete/{id}', [UserController::class, 'delete']);
