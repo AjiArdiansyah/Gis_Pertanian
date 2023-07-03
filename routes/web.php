@@ -7,6 +7,9 @@ use App\Http\Controllers\PemilikLahanController;
 use App\Http\Controllers\WilayahDesaController;
 use App\Http\Controllers\DataLahanController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WilayahBanjirController;
+use App\Http\Controllers\PrediksiLuasController;
+use App\Http\Controllers\RumusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,3 +80,24 @@ Route::get('/user/edit/{id}', [UserController::class, 'edit']);
 Route::post('/user/update/{id}', [UserController::class, 'update']);
 
 Route::get('/user/delete/{id}', [UserController::class, 'delete']);
+
+//Rawan Bnjir
+Route::get('/wilayah_banjir', [WilayahBanjirController::class, 'index'])->name('wilayah_banjir');
+
+Route::get('/wilayah_banjir/add', [WilayahBanjirController::class, 'add']);
+
+Route::post('/wilayah_banjir/insert', [WilayahBanjirController::class, 'insert']);
+
+Route::get('/wilayah_banjir/edit/{id_rawanbanjir}', [WilayahBanjirController::class, 'edit']);
+
+Route::post('/wilayah_banjir/update/{id_rawanbanjir}', [WilayahBanjirController::class, 'update']);
+
+Route::get('/wilayah_banjir/delete/{id_rawanbanjir}', [WilayahBanjirController::class, 'delete']);
+
+//Prediksi luas
+Route::get('/prediksi_luas', [PrediksiLuasController::class, 'index'])->name('prediksi_luas');
+
+
+//rumus
+Route::get('/rumus_test', [RumusController::class, 'index'])->name('rumus');
+Route::get('/utm', [RumusController::class, 'utm'])->name('utm');

@@ -175,6 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+
     ],
 
     /*
@@ -229,6 +230,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Proj4php' => App\Facades\Proj4phpFacade::class,
+        'Proj4phpServiceProvider' => App\Providers\Proj4phpServiceProvider::class,
+
 
     ],
 

@@ -182,6 +182,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </a>
             </li>
 
+            <li class="nav-item">
+              <a href="/wilayah_banjir" class="nav-link {{ request()->is('wilayah_banjir') ? 'active' : ''}}">
+                <i class="nav-icon fas fa-user"></i>
+                <p>Rawan Banjir</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/prediksi_luas" class="nav-link {{ request()->is('prediksi_luas') ? 'active' : ''}}">
+                <i class="nav-icon fas fa-user"></i>
+                <p>Prediksi Luas Lahan</p>
+              </a>
+            </li>
+
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link ">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
