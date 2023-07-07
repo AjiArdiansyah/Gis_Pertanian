@@ -5,12 +5,12 @@
 <div class="col-md-12">
             <div class="card card-outline card-primary">
               <div class="card-header">
-                <h3 class="card-title">{{$title}}</h3>
+                //<h3 class="card-title">prediksi</h3>
 
                 <div class="card-tools">
-                  <a href="/prediksi_luas/add" type="button" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i>Add</a>
-                  <a href="/prediksi_luas/utm" type="button" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i>Utm</a>
-                  <a href="/prediksi_luas/shoelace" type="button" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i>Shoelace</a>
+                  <button href="/prediksi_luas" type="button" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i>Back</button>
+                  <button href="/prediksi_luas/utm" type="button" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i>Utm</button>
+                  <button href="/prediksi_luas/shoelace" type="button" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i>Shoelace</button>
                 </div>
                 <!-- /.card-tools -->
               </div>
@@ -30,6 +30,7 @@
                       <th class="text-center">Nama Lahan</th>
                       <th class="text-center">Luas</th>
                       <th width="100px" class="text-center">Geojson</th>
+                      <th width="100px" class="text-center">UTM</th>
                       <th class="text-center">Action</th>
                     </tr>
                   </thead>
@@ -43,6 +44,7 @@
                       <td>{{ $data->nama_lahan }}</td>
                       <td>{{ $data->luas }}</td>
                       <td>{{ $data->geojson }}</td>
+                      <td>{{ $data->utm }}</td>
                       <td>
                         <a href="/prediksi_luas/edit/{{ $data->id_prediksiluas}}" class="btn btn-sm btn-flat btn-warning"><i class="fa fa-edit"></i></a>
                         <button class="btn btn-sm btn-flat btn-danger" data-toggle="modal" data-target="#delete{{ $data->id_prediksiluas }}"><i class="fa fa-trash"></i></button>

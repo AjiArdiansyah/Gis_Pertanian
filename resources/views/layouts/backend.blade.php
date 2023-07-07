@@ -58,6 +58,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
+  <!-- Datepicker CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<!-- Datepicker JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+
   
 
   <!-- jQuery -->
@@ -347,6 +354,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <script>
   $.widget.bridge('uibutton', $.ui.button)
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#reservationdate').datetimepicker({
+        format: 'YYYY-MM-DD', // Format tanggal yang diinginkan, sesuaikan dengan kebutuhan Anda
+        icons: {
+            time: 'fa fa-clock',
+            date: 'fa fa-calendar',
+            up: 'fa fa-chevron-up',
+            down: 'fa fa-chevron-down',
+            previous: 'fa fa-chevron-left',
+            next: 'fa fa-chevron-right',
+            today: 'fa fa-calendar-check-o',
+            clear: 'fa fa-trash',
+            close: 'fa fa-times'
+        }
+    });
+});
 </script>
 
 <script src="{{ asset('AdminLTE')}}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

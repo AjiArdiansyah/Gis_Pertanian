@@ -97,6 +97,21 @@ Route::get('/wilayah_banjir/delete/{id_rawanbanjir}', [WilayahBanjirController::
 //Prediksi luas
 Route::get('/prediksi_luas', [PrediksiLuasController::class, 'index'])->name('prediksi_luas');
 
+Route::get('/prediksi_luas/add', [PrediksiLuasController::class, 'add']);
+
+Route::post('/prediksi_luas/insert', [PrediksiLuasController::class, 'insert']);
+
+Route::get('/prediksi_luas/edit/{id_prediksiluas}', [PrediksiLuasController::class, 'edit']);
+
+Route::post('/prediksi_luas/update/{id_prediksiluas}', [PrediksiLuasController::class, 'update']);
+
+Route::get('/prediksi_luas/delete/{id_prediksiluas}', [PrediksiLuasController::class, 'delete']);
+
+//Route::get('/prediksi_luas/utm', [PrediksiLuasController::class, 'utm'])->name('utm');
+
+Route::get('/prediksi_luas/utm', [PrediksiLuasController::class, 'utm'])->name('prediksi_luas.utm');
+
+
 
 //rumus
 Route::get('/rumus_test', [RumusController::class, 'index'])->name('rumus');

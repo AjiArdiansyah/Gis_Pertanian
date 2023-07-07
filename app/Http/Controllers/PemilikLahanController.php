@@ -90,8 +90,7 @@ class PemilikLahanController extends Controller
         ]
     );
 
-    //
-
+ 
     $data = [
         'nama_pemilik' => Request()->nama_pemilik,
         'alamat' => Request()->alamat,

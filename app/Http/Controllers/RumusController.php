@@ -53,7 +53,7 @@ class RumusController extends Controller
         $proj4php = new Proj4php();
 
         $sourceProj = new Proj('EPSG:4326', $proj4php);  // Source coordinate system (e.g., WGS84)
-        $targetProj = new Proj('EPSG:32749', $proj4php); // Target coordinate system (UTM zone 12N)
+        $targetProj = new Proj('EPSG:32749', $proj4php); // Target coordinate system (UTM zone 49s)
 
         $point = new Point($lon, $lat);
         $transformedPoint = $proj4php->transform($sourceProj, $targetProj, $point);
@@ -61,6 +61,6 @@ class RumusController extends Controller
 
         $utmEasting = $transformedPoint->x; // UTM easting coordinate
         $utmNorthing = $transformedPoint->y; // UTM northing coordinate
-        dd($utmEasting);
+        dd($utmEasting, $utmNorthing);
     }
 }
