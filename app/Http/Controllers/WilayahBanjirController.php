@@ -7,6 +7,8 @@ use App\Models\WilayahBanjirModel;
 
 class WilayahBanjirController extends Controller
 {
+    protected $WilayahBanjirModel;
+
     public function __construct()
 
     {

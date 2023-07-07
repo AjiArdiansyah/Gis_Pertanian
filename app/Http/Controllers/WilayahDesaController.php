@@ -7,6 +7,8 @@ use App\Models\WilayahDesaModel;
 
 class WilayahDesaController extends Controller
 {
+    protected $WilayahDesaModel;
+
     public function __construct()
 
     {

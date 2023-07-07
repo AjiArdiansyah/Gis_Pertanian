@@ -8,6 +8,9 @@ use App\Models\PemilikLahanModel;
 
 class DataLahanController extends Controller
 {
+    protected $DataLahanModel;
+    protected $PemilikLahanModel;
+
     public function __construct()
     {
        $this->DataLahanModel = new DataLahanModel();
@@ -40,28 +43,39 @@ class DataLahanController extends Controller
         Request()->validate([
             'nama_lahan' => 'required',
             'id_pemiliklahan' => 'required',
-            'keterangan' => 'required',
-            'gambar' => '|max:2024',
+            'luas' => 'required',
+            'gambar' => 'image|max:2024',
             'geojson' => 'required',
 
         ],
         [
             'nama_lahan.required' => 'Wajib Diisi !!!',
             'id_pemiliklahan.required' => 'Wajib Diisi !!!',
-            'keterangan.required' => 'Wajib Diisi !!!',
+            'luas.required' => 'Wajib Diisi !!!',
             
             'geojson.required' => 'Wajib Diisi !!!',
         ]
     );
 
-    $file = Request()->gambar;
-    $filename = $file->getClientOriginalName();
-    $file->move(public_path('gambar'), $filename);
+    // $file = Request()->gambar;
+    // $filename = $file->getClientOriginalName();
+    // $file->move(public_path('gambar'), $filename);
+
+    //jika tidak file gambar yang dimasukan
+    $filename = null;
+
+    if (Request()->hasFile('gambar')) {
+        $file = Request()->file('gambar');
+        $filename = $file->getClientOriginalName();
+        $file->move(public_path('gambar'), $filename);
+    }
+
+   
 
     $data = [
         'nama_lahan' => Request()->nama_lahan,
         'id_pemiliklahan' => Request()->id_pemiliklahan,
-        'keterangan' => Request()->keterangan,
+        'luas' => Request()->luas,
         'gambar' => $filename,
         'geojson' => Request()->geojson,
 
@@ -85,7 +99,7 @@ class DataLahanController extends Controller
         Request()->validate([
             'nama_lahan' => 'required',
             'id_pemiliklahan' => 'required',
-            'keterangan' => 'required',
+            'luas' => 'required',
             'gambar' => 'max:1024',
            
 
@@ -93,7 +107,7 @@ class DataLahanController extends Controller
         [
             'nama_lahan.required' => 'Wajib Diisi !!!',
             'id_pemiliklahan.required' => 'Wajib Diisi !!!',
-            'keterangan.required' => 'Wajib Diisi !!!',
+            'luas.required' => 'Wajib Diisi !!!',
             
            
         ]
@@ -114,7 +128,7 @@ class DataLahanController extends Controller
         $data = [
             'nama_lahan' => Request()->nama_lahan,
             'id_pemiliklahan' => Request()->id_pemiliklahan,
-            'keterangan' => Request()->keterangan,
+            'luas' => Request()->luas,
             'gambar' => $filename,
             'geojson' => Request()->geojson,
     
@@ -125,7 +139,7 @@ class DataLahanController extends Controller
         $data = [
             'nama_lahan' => Request()->nama_lahan,
             'id_pemiliklahan' => Request()->id_pemiliklahan,
-            'keterangan' => Request()->keterangan,
+            'luas' => Request()->luas,
             
             'geojson' => Request()->geojson,
     

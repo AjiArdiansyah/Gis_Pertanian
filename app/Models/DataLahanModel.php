@@ -28,6 +28,18 @@ class DataLahanModel extends Model
         ->where('id_datalahan', $id_datalahan)->first();
     }
 
+    
+    public function getPemilikLahan($id_pemiliklahan)
+    {
+        return DB::table('tbl_datalahan')
+        ->where('id_pemiliklahan', $id_pemiliklahan)->get();
+    }
+    public function getGeojson($id)
+    {
+        return DB::table('tbl_datalahan')
+        ->where('id_datalahan', $id)->get();
+    }
+
     public function UpdateData($id_datalahan, $data)
     {
         DB::table('tbl_datalahan')

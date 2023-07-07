@@ -7,6 +7,8 @@ use App\Models\WilayahModel;
 
 class WebController extends Controller
 {
+    protected $WilayahModel; 
+
     public function __construct()
 
     {

@@ -111,6 +111,13 @@ Route::get('/prediksi_luas/delete/{id_prediksiluas}', [PrediksiLuasController::c
 
 Route::get('/prediksi_luas/utm', [PrediksiLuasController::class, 'utm'])->name('prediksi_luas.utm');
 
+//ajax
+Route::get('/get-pemiliklahan/{id}', [PrediksiLuasController::class, 'getid_pemiliklahan']);
+Route::get('/get-luas/{id}', [PrediksiLuasController::class, 'getid_luas']);
+
+Route::get('/get-datalahan/{id}', [PrediksiLuasController::class, 'getid_datalahan']);
+Route::get('/get-geojson/{id}', [PrediksiLuasController::class, 'getid_geojson']);
+
 
 
 //rumus

@@ -29,6 +29,29 @@ class PrediksiLuasModel extends Model
         ->join('tbl_datalahan', 'tbl_datalahan.id_datalahan', '=', 'tbl_prediksiluas.id_datalahan')
         ->where('id_prediksiluas', $id_prediksiluas)->first();
     }
+    
+    
+    public function getPemilikLahan($id_pemiliklahan)
+    {
+        return DB::table('tbl_datalahan')
+        ->where('id_pemiliklahan', $id_pemiliklahan)->get();
+    }
+    public function getGeojson($id)
+    {
+        return DB::table('tbl_datalahan')
+        ->where('id_datalahan', $id)->get();
+    }
+
+    public function getLuasPemilikLahan($id_pemiliklahan)
+    {
+        return DB::table('tbl_pemiliklahan')
+        ->where('id_pemiliklahan', $id_pemiliklahan)->get();
+    }
+    public function getLuas($id)
+    {
+        return DB::table('tbl_pemiliklahan')
+        ->where('id_pemiliklahan', $id)->get();
+    }
 
     public function UpdateData($id_prediksiluas, $data)
     {

@@ -26,7 +26,7 @@
                       <th class="text-center">No</th>
                       <th class="text-center">Nama Lahan</th>
                       <th class="text-center">Pemilik Lahan</th>
-                      <th class="text-center">Keterangan</th>
+                      <th class="text-center">Luas</th>
                       <th class="text-center">Gambar</th>
                       <th width="100px" class="text-center">Geojson</th>
                       <th class="text-center">Action</th>
@@ -40,7 +40,7 @@
                       <td class="text-center">{{ $no++}}</td>
                       <td>{{ $data->nama_lahan }}</td>
                       <td>{{ $data->nama_pemilik }}</td>
-                      <td>{{ $data->keterangan }}</td>
+                      <td>{{ $data->luas }}</td>
                       <td class="text-center"><img src="{{ asset('gambar') }}/{{ $data->gambar }}" width="100px" height="75px"></td>
                       <td>{{ $data->geojson }}</td>
                       <td>

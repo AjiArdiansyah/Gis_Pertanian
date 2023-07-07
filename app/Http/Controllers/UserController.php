@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    protected $UserModel;
+
     public function __construct()
     {
         $this->middleware('auth');

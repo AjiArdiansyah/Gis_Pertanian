@@ -57,10 +57,10 @@
                     <div class="col-sm-6">
                         <!-- text input -->
                         <div class="form-group">
-                            <label>Keterangan</label>
-                            <input type="text" name="keterangan" class="form-control" placeholder="Keterangan">
+                            <label>Luas</label>
+                            <input type="text" name="luas" class="form-control" placeholder="Luas">
                             <div class="text-danger">
-                                @error('keterangan')
+                                @error('luas')
                                 {{$message}}
                                 @enderror
                             </div>

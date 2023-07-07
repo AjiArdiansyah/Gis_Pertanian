@@ -17,6 +17,10 @@ use proj4php\Point;
 
 class PrediksiLuasController extends Controller
 {
+    protected $PemilikLahanModel;
+    protected $DataLahanModel;
+    protected $PrediksiLuasModel;
+
     public function __construct()
     {
         $this->PemilikLahanModel = new PemilikLahanModel();
@@ -136,59 +140,86 @@ class PrediksiLuasController extends Controller
 
     //UTM
     public function utm()
-{
-    $prediksiluas = $this->PrediksiLuasModel->AllData();
-    $utm = $this->PrediksiLuasModel->AllData();
-    $pemiliklahan = $this->PemilikLahanModel->AllData();
-    $datalahan = $this->DataLahanModel->AllData();
+    {
+        $prediksiluas = $this->PrediksiLuasModel->AllData();
+        $utm = $this->PrediksiLuasModel->AllData();
+        $pemiliklahan = $this->PemilikLahanModel->AllData();
+        $datalahan = $this->DataLahanModel->AllData();
 
-    $data = [
-        'title' => 'Data Prediksi Luas',
-        'prediksiluas' => $prediksiluas,
-        'utm' => $utm,
-        'pemiliklahan' => $pemiliklahan,
-        'datalahan' => $datalahan,
-    ];
+        $data = [
+            'title' => 'Data Prediksi Luas',
+            'prediksiluas' => $prediksiluas,
+            'utm' => $utm,
+            'pemiliklahan' => $pemiliklahan,
+            'datalahan' => $datalahan,
+        ];
 
-    try {
-        $geojson = DB::table('tbl_datalahan')->select('geojson')->first();
-        if ($geojson && isset($geojson->geojson)) {
-            $decodedData = json_decode($geojson->geojson);
+        try {
+            $geojson = DB::table('tbl_datalahan')->select('geojson')->first();
+            if ($geojson && isset($geojson->geojson)) {
+                $decodedData = json_decode($geojson->geojson);
 
-            if ($decodedData && isset($decodedData->features[0]->geometry->coordinates[0])) {
-                $coordinates = $decodedData->features[0]->geometry->coordinates[0];
+                if ($decodedData && isset($decodedData->features[0]->geometry->coordinates[0])) {
+                    $coordinates = $decodedData->features[0]->geometry->coordinates[0];
 
-                $lon = $coordinates[0][0];
-                $lat = $coordinates[0][1];
+                    $lon = $coordinates[0][0];
+                    $lat = $coordinates[0][1];
 
-                $proj4php = new \proj4php\Proj4php();
-                $sourceProj = new Proj('EPSG:4326', $proj4php);  // Source coordinate system (e.g., WGS84)
-                $targetProj = new Proj('EPSG:32749', $proj4php); // Target coordinate system (UTM zone 49s)
-        
+                    $proj4php = new \proj4php\Proj4php();
+                    $sourceProj = new Proj('EPSG:4326', $proj4php);  // Source coordinate system (e.g., WGS84)
+                    $targetProj = new Proj('EPSG:32749', $proj4php); // Target coordinate system (UTM zone 49s)
 
-                $point = new \proj4php\common\Point($lon, $lat);
-                $transformedPoint = \proj4php\Proj::transform($sourceProj, $targetProj, $point);
 
-                $utmEasting = $transformedPoint->x; // Koordinat easting UTM
-                $utmNorthing = $transformedPoint->y; // Koordinat northing UTM
+                    $point = new \proj4php\common\Point($lon, $lat);
+                    $transformedPoint = \proj4php\Proj::transform($sourceProj, $targetProj, $point);
 
-                return view('Admin.prediksiluas.v_utm', compact('data', 'utmEasting', 'utmNorthing'));
+                    $utmEasting = $transformedPoint->x; // Koordinat easting UTM
+                    $utmNorthing = $transformedPoint->y; // Koordinat northing UTM
+
+                    return view('Admin.prediksiluas.v_utm', compact('data', 'utmEasting', 'utmNorthing'));
+                }
             }
+        } catch (\Exception $e) {
+            // Menangani pengecualian atau kesalahan yang terjadi
+            dd($e->getMessage());
         }
-    } catch (\Exception $e) {
-        // Menangani pengecualian atau kesalahan yang terjadi
-        dd($e->getMessage());
+
+        // Penanganan jika data GeoJSON tidak valid atau tidak ditemukan
+        $utmEasting = null;
+        $utmNorthing = null;
+        dd($prediksiluas);
+        return view('Admin.prediksiluas.v_utm', compact('data', 'utmEasting', 'utmNorthing'));
     }
 
-    // Penanganan jika data GeoJSON tidak valid atau tidak ditemukan
-    $utmEasting = null;
-    $utmNorthing = null;
-    dd($prediksiluas);
-    return view('Admin.prediksiluas.v_utm', compact('data', 'utmEasting', 'utmNorthing'));
-}
+    public function getid_datalahan($id)
+    {
+        $datalahan = $this->DataLahanModel->getPemilikLahan($id);
 
 
+        return response()->json($datalahan);
+    }
 
 
-    
+    public function getid_geojson($id)
+    {
+        $datgeojson = $this->DataLahanModel->getGeojson($id);
+
+        return response()->json($datgeojson);
+    }
+
+    public function getid_pemiliklahan($id)
+    {
+        $pemiliklahan = $this->PemilikLahanModel->getLuasPemilikLahan($id);
+
+
+        return response()->json($pemiliklahan);
+    }
+
+
+    public function getid_luas($id)
+    {
+        $datluas = $this->PemilikLahanModel->getLuas($id);
+
+        return response()->json($datluas);
+    }
 }

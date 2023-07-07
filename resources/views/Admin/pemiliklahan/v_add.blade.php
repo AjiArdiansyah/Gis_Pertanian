@@ -43,10 +43,10 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Luas</label>
-                    <input name="luas" class="form-control" id="exampleInputPassword1" placeholder="Luas">
+                    <label for="exampleInputPassword1">keterangan</label>
+                    <input name="keterangan" class="form-control" id="exampleInputPassword1" placeholder="Keterangan">
                     <div class="text-danger">
-                        @error('luas')
+                        @error('keterangan')
                         {{$message}}
                         @enderror
                     </div>

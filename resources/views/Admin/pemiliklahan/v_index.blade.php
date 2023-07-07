@@ -27,7 +27,7 @@
                       <th class="text-center">Nama Pemilik Lahan</th>
                       <th class="text-center">Alamat</th>
                       <th class="text-center">Tanggal Lahir</th>
-                      <th class="text-center">Luas Lahan</th>
+                      <th class="text-center">Keterangan</th>
                       <th class="text-center">Action</th>
                     </tr>
                   </thead>
@@ -40,7 +40,7 @@
                       <td>{{ $data->nama_pemilik }}</td>
                       <td>{{ $data->alamat }}</td>
                       <td>{{ $data->tanggal_lahir }}</td>
-                      <td>{{ $data->luas }}</td>
+                      <td>{{ $data->keterangan }}</td>
                       <td>
                         <a href="/pemilik_lahan/edit/{{ $data->id_pemiliklahan}}" class="btn btn-sm btn-flat btn-warning"><i class="fa fa-edit"></i></a>
                         <button class="btn btn-sm btn-flat btn-danger" data-toggle="modal" data-target="#delete{{ $data->id_pemiliklahan }}"><i class="fa fa-trash"></i></button>

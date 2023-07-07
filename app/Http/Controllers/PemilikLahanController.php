@@ -7,6 +7,7 @@ use App\Models\PemilikLahanModel;
 
 class PemilikLahanController extends Controller
 {
+    protected $PemilikLahanModel;
     
     public function __construct()
     {
@@ -40,14 +41,14 @@ class PemilikLahanController extends Controller
             'nama_pemilik' => 'required',
             'alamat' => 'required',
             'tanggal_lahir' => 'required',
-            'luas' => 'required',
+            'keterangan' => 'required',
 
         ],
         [
             'nama_pemilik.required' => 'Wajib Diisi !!!',
             'alamat.required' => 'Wajib Diisi !!!',
             'tanggal_lahir.required' => 'Wajib Diisi !!!',
-            'luas.required' => 'Wajib Diisi !!!',
+            'keterangan.required' => 'Wajib Diisi !!!',
         ]
     );
 
@@ -57,7 +58,7 @@ class PemilikLahanController extends Controller
         'nama_pemilik' => Request()->nama_pemilik,
         'alamat' => Request()->alamat,
         'tanggal_lahir' => Request()->tanggal_lahir,
-        'luas' => Request()->luas,
+        'keterangan' => Request()->keterangan,
 
     ];
     $this->PemilikLahanModel->InsertData($data);
@@ -79,14 +80,14 @@ class PemilikLahanController extends Controller
             'nama_pemilik' => 'required',
             'alamat' => 'required',
             'tanggal_lahir' => 'required',
-            'luas' => 'required',
+            'keterangan' => 'required',
 
         ],
         [
             'nama_pemilik.required' => 'Wajib Diisi !!!',
             'alamat.required' => 'Wajib Diisi !!!',
             'tanggal_lahir.required' => 'Wajib Diisi !!!',
-            'luas.required' => 'Wajib Diisi !!!',
+            'keterangan.required' => 'Wajib Diisi !!!',
         ]
     );
 
@@ -95,7 +96,7 @@ class PemilikLahanController extends Controller
         'nama_pemilik' => Request()->nama_pemilik,
         'alamat' => Request()->alamat,
         'tanggal_lahir' => Request()->tanggal_lahir,
-        'luas' => Request()->luas,
+        'keterangan' => Request()->keterangan,
 
     ];
     $this->PemilikLahanModel->UpdateData($id_pemiliklahan, $data);
