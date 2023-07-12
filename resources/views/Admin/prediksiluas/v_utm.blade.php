@@ -64,7 +64,7 @@
         <div class="modal-dialog">
           <div class="modal-content bg-danger">
             <div class="modal-header">
-              <h4 class="modal-title">{{ $data->nama_lahan }}</h4>
+              <h4 class="modal-title">{{ $data->prediksi }}</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>

@@ -18,38 +18,41 @@ class RumusController extends Controller
 {
     //
 
-    public function index()
+    public function shoelace($output)
     {
-        $X = [604805.705, 604805.667, 604836.801, 604836.840, 604805.705];
-        $Y = [9198524.891, 9198506.537, 9198506.472, 9198524.826, 9198524.891];
+        $data = json_decode($output, true);
 
-        $xCoordinates = $X;
-        $yCoordinates = $Y;
-
+        $xCoordinates = $data[0];
+        $yCoordinates = $data[1];
+    
         $xCoordinates[] = $xCoordinates[0];
         $yCoordinates[] = $yCoordinates[0];
-
+    
         $sum = 0;
         $diff = 0;
-        $count = count($X);
-
-        for ($i = 0; $i < $count; $i++) {
+        $count = count($xCoordinates);
+    
+        for ($i = 0; $i < $count - 1; $i++) {
             $sum += ($xCoordinates[$i] * $yCoordinates[$i + 1]);
             $diff -= ($xCoordinates[$i + 1] * $yCoordinates[$i]);
         }
-
+    
         $area = abs(($sum + $diff) / 2);
-
-
+    
         dd($area);
-
 
     }
 
     public function utm()
     {
-        $lon = 111.949360; // Example longitude
-        $lat = -7.249818;   // Example latitude
+        $geojson = '{"type":"FeatureCollection","features":[{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[111.949015,-7.24978],[111.949015,-7.24978],[111.949019,-7.25007],[111.949019,-7.25007],[111.949064,-7.25007],[111.949064,-7.25007],[111.949086,-7.250082],[111.949086,-7.250082],[111.949115,-7.250098],[111.949115,-7.250098],[111.949166,-7.250094],[111.949166,-7.250094],[111.949159,-7.249783],[111.949159,-7.249783],[111.949018,-7.249778],[111.949015,-7.24978]]]}}]}';
+
+        $data = json_decode($geojson, true);
+        $features = $data['features'];
+    
+        $lon = $features[0]['geometry']['coordinates'][0][0][0];
+        $lat = $features[0]['geometry']['coordinates'][0][0][1];
+
         $proj4php = new Proj4php();
 
         $sourceProj = new Proj('EPSG:4326', $proj4php);  // Source coordinate system (e.g., WGS84)
@@ -61,6 +64,35 @@ class RumusController extends Controller
 
         $utmEasting = $transformedPoint->x; // UTM easting coordinate
         $utmNorthing = $transformedPoint->y; // UTM northing coordinate
-        dd($utmEasting, $utmNorthing);
+
+        $X = [];
+        $Y = [];
+        foreach ($features[0]['geometry']['coordinates'][0] as $coordinate) {
+            $point = new Point($coordinate[0], $coordinate[1]);
+            $transformedPoint = $proj4php->transform($sourceProj, $targetProj, $point);
+            $X[] = $transformedPoint->x;
+            $Y[] = $transformedPoint->y;
+        }
+  
+        $output = json_encode([$X, $Y]);
+
+        $data = json_decode($output, true);
+
+        $convertedArray = [];
+        foreach ($data[0] as $index => $coordinate) {
+            $x = $coordinate;
+            $y = $data[1][$index];
+            $convertedArray[] = [$x, $y];
+        }
+        // $output = str_replace('],[', '],[', $output);
+
+        dd(json_encode($convertedArray));
+
+
+        // $this->shoelace($output);
+        // dd($output);
+
+        
+        // dd($X, $Y);
     }
 }

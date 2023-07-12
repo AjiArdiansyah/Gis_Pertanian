@@ -13,6 +13,13 @@ use  App\Facades\Proj4phpFacade;
 use proj4php\Proj4php;
 use proj4php\Proj;
 use proj4php\Point;
+//use proj4php\Proj4php\Point;
+
+//use proj4php\common\Point;
+
+
+
+
 
 
 class PrediksiLuasController extends Controller
@@ -54,34 +61,45 @@ class PrediksiLuasController extends Controller
 
     public function insert()
     {
+        
         Request()->validate(
             [
                 'prediksi' => 'required',
                 //'nama_lahan' => 'required',
-                //'id_pemiliklahan' => 'required',
-                //'id_datalahan' => 'required',
-
+                'id_pemiliklahan' => 'required',
+                'id_datalahan' => 'required',
+                // 'geojson' => 'geojson'
 
             ],
             [
                 'prediksi.required' => 'Wajib Diisi !!!',
                 //'nama_lahan.required' => 'Wajib Diisi !!!',
-                //'id_pemiliklahan.required' => 'Wajib Diisi !!!',
-                //'id_datalahan.required' => 'Wajib Diisi !!!',
+                'id_pemiliklahan.required' => 'Wajib Diisi !!!',
+                'id_datalahan.required' => 'Wajib Diisi !!!',
+                // 'geojson.required' => 'Wajib Diisi'
 
             ]
         );
 
+        $result = $this->utm(Request()->geojson);
 
         $data = [
             'prediksi' => Request()->prediksi,
             'id_pemiliklahan' => Request()->id_pemiliklahan,
             'id_datalahan' => Request()->id_datalahan,
+            'shoelace' => $result['area'],
+            'utm' => $result['nilaiUTM'],
 
 
         ];
-        $this->PrediksiLuasModel->InsertData($data);
-        return redirect()->route('prediksi_luas')->with('pesan', 'Data Berhasil Ditambahkan');
+
+
+        // dd($data);
+        // PrediksiLuasModel::InsertData($data);
+
+         $this->PrediksiLuasModel->InsertData($data);
+         return redirect()->route('prediksi_luas')->with('pesan', 'Data Berhasil Ditambahkan');
+       
     }
 
 
@@ -104,6 +122,7 @@ class PrediksiLuasController extends Controller
                 'prediksi' => 'required',
                 'id_pemiliklahan' => 'required',
                 'id_datalahan' => 'required',
+                'geojson' => 'required',
 
 
             ],
@@ -111,24 +130,29 @@ class PrediksiLuasController extends Controller
                 'prediksi.required' => 'Wajib Diisi !!!',
                 'id_pemiliklahan.required' => 'Wajib Diisi !!!',
                 'id_datalahan.required' => 'Wajib Diisi !!!',
+                'geojson.required' => 'Wajib Diisi !!!',
 
 
 
             ]
         );
+        $result = $this->utm(Request()->geojson);
 
         $data = [
             'prediksi' => Request()->prediksi,
             'id_pemiliklahan' => Request()->id_pemiliklahan,
             'id_datalahan' => Request()->id_datalahan,
-
+            'shoelace' => $result['area'],
+            'utm' => $result['nilaiUTM'],
 
         ];
-        $this->PrediksiLuasModel->UpdateData($id_prediksiluas, $data);
-        return redirect()->route('prediksi_luas')->with('pesan', 'Data berhasil di Update.!!!');
+
+        // $this->PrediksiLuasModel->UpdateData($id_prediksiluas, $data);
+        // return redirect()->route('prediksi_luas')->with('pesan', 'Data berhasil di Update.!!!');
 
 
         $this->PrediksiLuasModel->UpdateData($id_prediksiluas, $data);
+        
         return redirect()->route('prediksi_luas')->with('pesan', 'Data Berhasil Update');
     }
 
@@ -138,58 +162,8 @@ class PrediksiLuasController extends Controller
         return redirect()->route('prediksi_luas')->with('pesan', 'Data Berhasil Delete');
     }
 
-    //UTM
-    public function utm()
-    {
-        $prediksiluas = $this->PrediksiLuasModel->AllData();
-        $utm = $this->PrediksiLuasModel->AllData();
-        $pemiliklahan = $this->PemilikLahanModel->AllData();
-        $datalahan = $this->DataLahanModel->AllData();
+  
 
-        $data = [
-            'title' => 'Data Prediksi Luas',
-            'prediksiluas' => $prediksiluas,
-            'utm' => $utm,
-            'pemiliklahan' => $pemiliklahan,
-            'datalahan' => $datalahan,
-        ];
-
-        try {
-            $geojson = DB::table('tbl_datalahan')->select('geojson')->first();
-            if ($geojson && isset($geojson->geojson)) {
-                $decodedData = json_decode($geojson->geojson);
-
-                if ($decodedData && isset($decodedData->features[0]->geometry->coordinates[0])) {
-                    $coordinates = $decodedData->features[0]->geometry->coordinates[0];
-
-                    $lon = $coordinates[0][0];
-                    $lat = $coordinates[0][1];
-
-                    $proj4php = new \proj4php\Proj4php();
-                    $sourceProj = new Proj('EPSG:4326', $proj4php);  // Source coordinate system (e.g., WGS84)
-                    $targetProj = new Proj('EPSG:32749', $proj4php); // Target coordinate system (UTM zone 49s)
-
-
-                    $point = new \proj4php\common\Point($lon, $lat);
-                    $transformedPoint = \proj4php\Proj::transform($sourceProj, $targetProj, $point);
-
-                    $utmEasting = $transformedPoint->x; // Koordinat easting UTM
-                    $utmNorthing = $transformedPoint->y; // Koordinat northing UTM
-
-                    return view('Admin.prediksiluas.v_utm', compact('data', 'utmEasting', 'utmNorthing'));
-                }
-            }
-        } catch (\Exception $e) {
-            // Menangani pengecualian atau kesalahan yang terjadi
-            dd($e->getMessage());
-        }
-
-        // Penanganan jika data GeoJSON tidak valid atau tidak ditemukan
-        $utmEasting = null;
-        $utmNorthing = null;
-        dd($prediksiluas);
-        return view('Admin.prediksiluas.v_utm', compact('data', 'utmEasting', 'utmNorthing'));
-    }
 
     public function getid_datalahan($id)
     {
@@ -218,8 +192,91 @@ class PrediksiLuasController extends Controller
 
     public function getid_luas($id)
     {
-        $datluas = $this->PemilikLahanModel->getLuas($id);
+        //$datluas = $this->PemilikLahanModel->getLuas($id);
 
-        return response()->json($datluas);
+        $luas = DB::table('tbl_datalahan')->where('id_datalahan', $id)->first();
+        //return response()->json($datluas);
+        return response()->json($luas);
     }
+
+    public function utm($geojson)
+    {
+
+        $data = json_decode($geojson, true);
+        $features = $data['features'];
+    
+        $lon = $features[0]['geometry']['coordinates'][0][0][0];
+        $lat = $features[0]['geometry']['coordinates'][0][0][1];
+
+        $proj4php = new Proj4php();
+
+        $sourceProj = new Proj('EPSG:4326', $proj4php);  // Source coordinate system (e.g., WGS84)
+        $targetProj = new Proj('EPSG:32749', $proj4php); // Target coordinate system (UTM zone 49s)
+
+        $point = new Point($lon, $lat);
+        $transformedPoint = $proj4php->transform($sourceProj, $targetProj, $point);
+
+
+        $utmEasting = $transformedPoint->x; // UTM easting coordinate
+        $utmNorthing = $transformedPoint->y; // UTM northing coordinate
+
+        $X = [];
+        $Y = [];
+        foreach ($features[0]['geometry']['coordinates'][0] as $coordinate) {
+            $point = new Point($coordinate[0], $coordinate[1]);
+            $transformedPoint = $proj4php->transform($sourceProj, $targetProj, $point);
+            $X[] = $transformedPoint->x;
+            $Y[] = $transformedPoint->y;
+        }
+
+
+        
+        $output = json_encode([$X, $Y]);
+        // $output = str_replace('],[', '],[', $output);
+
+        $data = json_decode($output, true);
+
+        $convertedArray = [];
+        foreach ($data[0] as $index => $coordinate) {
+            $x = $coordinate;
+            $y = $data[1][$index];
+            $convertedArray[] = [$x, $y];
+        }
+        $area = $this->shoelace($output);
+
+        $nilaiUTM = json_encode($convertedArray);
+
+        return compact('area', 'nilaiUTM');
+        // dd($output);
+        // dd($X, $Y);
+    }
+
+    public function shoelace($output)
+    {
+        $data = json_decode($output, true);
+
+        $xCoordinates = $data[0];
+        $yCoordinates = $data[1];
+    
+        $xCoordinates[] = $xCoordinates[0];
+        $yCoordinates[] = $yCoordinates[0];
+    
+        $sum = 0;
+        $diff = 0;
+        $count = count($xCoordinates);
+    
+        for ($i = 0; $i < $count - 1; $i++) {
+            $sum += ($xCoordinates[$i] * $yCoordinates[$i + 1]);
+            $diff -= ($xCoordinates[$i + 1] * $yCoordinates[$i]);
+        }
+    
+        $area = abs(($sum + $diff) / 2);
+
+        return $area;
+    
+        // dd($area);
+
+    }
+
+    
 }

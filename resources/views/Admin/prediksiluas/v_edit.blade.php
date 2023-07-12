@@ -18,10 +18,25 @@
 
             <form action="/prediksi_luas/update/{{ $prediksiluas->id_prediksiluas}}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="col-sm-6">
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <!-- text input -->
+                        <div class="form-group">
+                            <label>Prediksi</label>
+                            <input type="text" name="prediksi" value="{{ $prediksiluas->prediksi}}" class="form-control" placeholder="Prediksi">
+                            <div class="text-danger">
+                                @error('prediksi')
+                                {{$message}}
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="col-sm-12">
                         <div class="form-group">
                             <label>Nama Pemilik</label>
-                            <select name="id_pemiliklahan" class="form-control">
+                            <select name="id_pemiliklahan" id="id_pemiliklahan" class="form-control">
                                 <option value="{{ $prediksiluas->id_pemiliklahan}}">{{ $prediksiluas->nama_pemilik}}</option>
                                 @foreach ($pemiliklahan as $data)
                                 <option value="{{ $data->id_pemiliklahan}}">{{ $data->nama_pemilik}}</option>
@@ -36,16 +51,18 @@
                             @enderror
                         </div>
                     </div>
-                </div>
+                
 
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                         <div class="form-group">
                             <label>Nama Lahan</label>
-                            <select name="id_datalahan" class="form-control">
+                            <select name="id_datalahan" id="id_datalahan" class="form-control">
                                 <option value="{{ $prediksiluas->id_datalahan}}">{{ $prediksiluas->nama_lahan}}</option>
-                                @foreach ($datalahan as $data)
+                                <option value="">--Nama Lahan--</option>
+
+                                <!-- @foreach ($datalahan as $data)
                                 <option value="{{ $data->id_datalahan}}">{{ $data->nama_lahan}}</option>
-                                @endforeach
+                                @endforeach -->
                             </select>
                             <div class="input-group-append">
                             </div>
@@ -56,54 +73,22 @@
                             @enderror
                         </div>
                     </div>
-                </div>
-
-                <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Luas</label>
-                            <select name="id_pemiliklahan" class="form-control">
-                                <option value="{{ $prediksiluas->id_pemiliklahan}}">{{ $prediksiluas->luas}}</option>
-                                @foreach ($pemiliklahan as $data)
-                                <option value="{{ $data->id_pemiliklahan}}">{{ $data->luas}}</option>
-                                @endforeach
-                            </select>
-                            <div class="input-group-append">
-                            </div>
-                        </div>
-                        <div class="text-danger">
-                            @error('luas')
-                            {{$message}}
-                            @enderror
-                        </div>
+                
+                    <div class="col-sm-12">
+                    <div class="form-group">
+                    <label>Luas</label>
+                    <input type="text" name="luas" id="luas" class="form-control" />
                     </div>
-                </div>
+                    </div>
 
                 
-                <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Geojson</label>
-                            <select name="id_datalahan" class="form-control">
-                                <option value="{{ $prediksiluas->id_datalahan}}">{{ $prediksiluas->geojson}}</option>
-                                @foreach ($datalahan as $data)
-                                <option value="{{ $data->id_datalahan}}">{{ $data->geojson}}</option>
-                                @endforeach
-                            </select>
-                            <div class="input-group-append">
-                            </div>
-                        </div>
-                        <div class="text-danger">
-                            @error('geojson')
-                            {{$message}}
-                            @enderror
-                        </div>
+                    <div class="col-sm-12">
+                    <div class="form-group">
+                    <label>Geojson</label>
+                    <input type="text" name="geojson" id="geojson" class="form-control" />
                     </div>
-                </div>
-
-                   
-
-             
-
-                   
+                    </div>
+           
                
 <div class="card-footer">
     <button type="submit" class="btn btn-info"><i class="fa fa-save"></i>Simpan</button>
@@ -128,5 +113,125 @@
         $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
     });
 </script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Ketika opsi pertama berubah
+        $('#id_pemiliklahan').change(function() {
+            console.log("asasasa");
+
+            var id_pemiliklahan = $(this).val();
+            console.log(id_pemiliklahan);
+            if (id_pemiliklahan) {
+                // Mengirim permintaan AJAX ke server
+                $.ajax({
+                    url: '/get-datalahan/' + id_pemiliklahan,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        // Menghapus semua opsi yang ada
+                        $('#id_datalahan').empty();
+                        $('#id_datalahan').append('<option value="">--Nama Lahan--</option>');
+
+                        // Menambahkan opsi berdasarkan data yang diterima dari server
+                        $.each(data, function(key, value) {
+                            $('#id_datalahan').append('<option value="' + value.id_datalahan + '">' + value.nama_lahan + '</option>');
+                        });
+
+
+                    }
+                });
+            } else {
+                // Jika opsi pertama tidak dipilih, hapus semua opsi pada opsi kedua
+                $('#id_datalahan').empty();
+                $('#id_datalahan').append('<option value="">--Nama Lahan--</option>');
+            }
+        });
+        $('#id_datalahan').change(function() {
+            var id_datalahan = $(this).val();
+            console.log("TEST121");
+            console.log(id_datalahan);
+            if (id_datalahan) {
+                // Mengirim permintaan AJAX ke server
+                $.ajax({
+                    url: '/get-geojson/' + id_datalahan,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        console.log("hasil");
+                        $('#geojson').empty();
+                        console.log(data[0].geojson);
+                        // Menampilkan geojson pada input textbox
+                        $('#geojson').val(data[0].geojson);
+                    }
+                });
+            } else {
+                // Jika opsi kedua tidak dipilih, hapus nilai pada input textbox
+                $('#geojson').val('');
+            }
+        });
+    });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        // Ketika opsi pertama berubah
+        $('#id_datalahan').change(function() {
+            console.log("teslahan");
+
+            var id_datalahan = $(this).val();
+            console.log(id_datalahan);
+            if (id_datalahan) {
+                // Mengirim permintaan AJAX ke server
+                $.ajax({
+                    url: '/get-datalahan/id_datalahan',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        // Menghapus semua opsi yang ada
+                        // $('#id_datalahan').empty();
+                        // $('#id_datalahan').append('<option value="">--Luas--</option>');
+
+                        // Menambahkan opsi berdasarkan data yang diterima dari server
+                        $.each(data, function(key, value) {
+                            $('#id_datalahan').append('<option value="' + value.id_datalahan + '">' + value.luas + '</option>');
+                        });
+                    }
+                });
+            } else {
+                // Jika opsi pertama tidak dipilih, hapus semua opsi pada opsi kedua
+                $('#id_datalahan').empty();
+                $('#id_datalahan').append('<option value="">--Luas--</option>');
+            }
+        });
+        $('#id_datalahan').change(function() {
+            var id_datalahan = $(this).val();
+            console.log("TESTlahan");
+            console.log(id_datalahan);
+            if (id_datalahan) {
+                // Mengirim permintaan AJAX ke server
+                $.ajax({
+                    url: '/get-luas/' + id_datalahan ,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        console.log("hasil");
+                        $('#luas').empty();
+                        console.log(data.luas);
+                        // Menampilkan data luas pada elemen dengan ID "luas"
+                        $('#luas').val(data.luas);
+                    }
+                });
+            } else {
+                // Jika opsi kedua tidak dipilih, hapus nilai pada elemen dengan ID "luas"
+                $('#luas').val('');
+            }
+        });
+    });
+</script>
+
 
 @endsection

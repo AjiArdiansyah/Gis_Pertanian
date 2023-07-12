@@ -135,8 +135,9 @@
                         </div>
                     </div> --}}
 
-
+                  
 </div>
+<script>console.log("prediksi_luas")</script>
 <div class="card-footer">
     <button type="submit" class="btn btn-info"><i class="fa fa-save"></i>Simpan</button>
     <a href="/prediksi_luas" class="btn btn-warning float-right">Cancel</a>
@@ -220,45 +221,47 @@
 </script>
 
 
+
+
 <script>
     $(document).ready(function() {
         // Ketika opsi pertama berubah
-        $('#id_pemiliklahan').change(function() {
-            console.log("tespemilik");
+        $('#id_datalahan').change(function() {
+            console.log("teslahan");
 
-            var id_pemiliklahan = $(this).val();
-            console.log(id_pemiliklahan);
-            if (id_pemiliklahan) {
+            var id_datalahan = $(this).val();
+            console.log(id_datalahan);
+            if (id_datalahan) {
                 // Mengirim permintaan AJAX ke server
                 $.ajax({
-                    url: '/get-pemiliklahan/id_pemiliklahan' + id_pemiliklahan,
+                    url: '/get-datalahan/id_datalahan',
                     type: 'GET',
                     dataType: 'json',
                     success: function(data) {
                         // Menghapus semua opsi yang ada
-                        $('#luas').empty();
-                        $('#luas').append('<option value="">--Luas--</option>');
+                        // $('#id_datalahan').empty();
+                        // $('#id_datalahan').append('<option value="">--Luas--</option>');
 
                         // Menambahkan opsi berdasarkan data yang diterima dari server
                         $.each(data, function(key, value) {
-                            $('#luas').append('<option value="' + value.id_pemiliklahan + '">' + value.luas + '</option>');
+                            $('#id_datalahan').append('<option value="' + value.id_datalahan + '">' + value.luas + '</option>');
                         });
                     }
                 });
             } else {
                 // Jika opsi pertama tidak dipilih, hapus semua opsi pada opsi kedua
-                $('#luas').empty();
-                $('#luas').append('<option value="">--Luas--</option>');
+                $('#id_datalahan').empty();
+                $('#id_datalahan').append('<option value="">--Luas--</option>');
             }
         });
-        $('#luas').change(function() {
-            var id_pemiliklahan = $(this).val();
+        $('#id_datalahan').change(function() {
+            var id_datalahan = $(this).val();
             console.log("TESTlahan");
-            console.log(id_pemiliklahan);
-            if (id_pemiliklahan) {
+            console.log(id_datalahan);
+            if (id_datalahan) {
                 // Mengirim permintaan AJAX ke server
                 $.ajax({
-                    url: '/get-luas/' ,
+                    url: '/get-luas/' + id_datalahan ,
                     type: 'GET',
                     dataType: 'json',
                     success: function(data) {
@@ -276,6 +279,55 @@
         });
     });
 </script>
+
+
+
+<!-- <script>
+    $(document).ready(function() {
+        // ...
+
+        $('form').submit(function(event) {
+            event.preventDefault();
+
+            // Mendapatkan nilai input prediksi
+            var prediksi = $('input[name="prediksi"]').val();
+
+            // Mendapatkan nilai input id_pemiliklahan
+            var idPemilikLahan = $('#id_pemiliklahan').val();
+
+            // Mendapatkan nilai input id_datalahan
+            var idDataLahan = $('#id_datalahan').val();
+
+            // Menampilkan nilai prediksi, id_pemiliklahan, dan id_datalahan di konsol
+            console.log('Prediksi:', prediksi);
+            console.log('ID Pemilik Lahan:', idPemilikLahan);
+            console.log('ID Data Lahan:', idDataLahan);
+
+            // Melakukan permintaan AJAX untuk menyimpan data
+            // $.ajax({
+            //     url: '/prediksi_luas/insert',
+            //     type: 'POST',
+            //     data: $(this).serialize(),
+            //     dataType: 'json',
+            //     success: function(response) {
+            //         // Menampilkan pesan sukses di konsol
+            //         console.log('Data berhasil disimpan:', response);
+
+            //         // Melakukan redirect atau tindakan lain setelah berhasil menyimpan data
+            //         // ...
+            //     },
+            //     error: function(xhr, status, error) {
+            //         // Menampilkan pesan error di konsol
+            //         console.log('Terjadi kesalahan saat menyimpan data:', error);
+
+            //         // Menampilkan pesan error kepada pengguna
+            //         // ...
+            //     }
+            // });
+        });
+    });
+</script>
+ -->
 
 
 

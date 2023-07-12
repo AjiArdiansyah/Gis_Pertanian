@@ -42,21 +42,22 @@ class PrediksiLuasModel extends Model
         ->where('id_datalahan', $id)->get();
     }
 
-    public function getLuasPemilikLahan($id_pemiliklahan)
+    public function getLuasPemilikLahan($id_datalahan)
     {
-        return DB::table('tbl_pemiliklahan')
-        ->where('id_pemiliklahan', $id_pemiliklahan)->get();
+        return DB::table('tbl_datalahan')
+        ->where('id_datalahan', $id_datalahan)->get();
     }
     public function getLuas($id)
     {
-        return DB::table('tbl_pemiliklahan')
-        ->where('id_pemiliklahan', $id)->get();
+        // return DB::table('tbl_datalahan')
+        // ->where('id_datalahan', $id)->get();
+        return DB::table('tbl_datalahan')->where('id_datalahan', $id)->first();
     }
 
     public function UpdateData($id_prediksiluas, $data)
     {
         DB::table('tbl_prediksiluas')
-        ->where('id_datalahan', $id_prediksiluas)
+        ->where('id_prediksiluas', $id_prediksiluas)
         ->update($data);
 
     }
@@ -64,7 +65,7 @@ class PrediksiLuasModel extends Model
     public function DeleteData($id_prediksiluas)
     {
         DB::table('tbl_prediksiluas')
-        ->where('id_datalahan', $id_prediksiluas)
+        ->where('id_id_prediksiluas', $id_prediksiluas)
         ->delete();
     }
 
