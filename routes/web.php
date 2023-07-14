@@ -109,7 +109,9 @@ Route::get('/prediksi_luas/delete/{id_prediksiluas}', [PrediksiLuasController::c
 
 //Route::get('/prediksi_luas/utm', [PrediksiLuasController::class, 'utm'])->name('utm');
 
-Route::get('/prediksi_luas/utm', [PrediksiLuasController::class, 'utm'])->name('prediksi_luas.utm');
+Route::get('/prediksi_luas/utm', [PrediksiLuasController::class, 'dataUTM'])->name('prediksi_luas.utm');
+
+Route::get('/prediksi_luas/shoelace', [PrediksiLuasController::class, 'dataSHOELACE'])->name('prediksi_luas.shoelace');
 
 //ajax
 Route::get('/get-datalahan/{id}', [PrediksiLuasController::class, 'getid_datalahan']);
@@ -117,6 +119,10 @@ Route::get('/get-luas/{id}', [PrediksiLuasController::class, 'getid_luas']);
 
 Route::get('/get-datalahan/{id}', [PrediksiLuasController::class, 'getid_datalahan']);
 Route::get('/get-geojson/{id}', [PrediksiLuasController::class, 'getid_geojson']);
+
+Route::get('/get-datalahan', [PrediksiLuasController::class, 'get_datalahan']);
+Route::get('/get-wilayahdesa', [PrediksiLuasController::class, 'get_wilayahdesa']);
+
 
 
 

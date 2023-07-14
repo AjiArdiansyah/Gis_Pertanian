@@ -85,7 +85,7 @@
 
                 <div class="col-sm-12">
                     <label>Map</label>
-                    <div id="map" style="width:100%; height: 500px;"></div>
+                    <div id="map" style="width:100%; height: 600px;"></div>
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css" />
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
                     <script>
@@ -95,18 +95,18 @@
                         });
 
                         var peta2 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                            maxZoom: 19,
+                            maxZoom: 20,
                             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
                         });
 
 
                         var peta3 = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-                            maxZoom: 19,
+                            maxZoom: 20,
                             attribution: 'Map data &copy; <a href="https://opentopomap.org/">OpenTopoMap</a> contributors'
                         });
 
                         var peta4 = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
-                            maxZoom: 19,
+                            maxZoom: 20,
                             attribution: 'Map data &copy; <a href="https://carto.com/">Carto</a>'
                         });
                         var map = L.map('map', {

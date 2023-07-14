@@ -21,7 +21,7 @@ class WilayahBanjirController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Wilayah Desa',
+            'title' => 'Wilayah Banjir',
             'wilayahbanjir' => $this->WilayahBanjirModel->AllData(),
         ];
         return view('Admin.rawanbanjir.v_index', $data);

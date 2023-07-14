@@ -65,7 +65,7 @@ class PrediksiLuasModel extends Model
     public function DeleteData($id_prediksiluas)
     {
         DB::table('tbl_prediksiluas')
-        ->where('id_id_prediksiluas', $id_prediksiluas)
+        ->where('id_prediksiluas', $id_prediksiluas)
         ->delete();
     }
 

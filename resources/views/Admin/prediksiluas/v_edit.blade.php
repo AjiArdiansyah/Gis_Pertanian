@@ -20,7 +20,7 @@
                 @csrf
 
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         <!-- text input -->
                         <div class="form-group">
                             <label>Prediksi</label>

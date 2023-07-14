@@ -23,10 +23,11 @@
               <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
-                      <th width="50px" class="text-center">No</th>
-                      <th class="text-center">Wilayah Desa</th>
-                      <th width="50px" class="text-center">Warna</th>
-                      <th width="100px"  class="text-center">Action</th>
+                      <th width="5px" class="text-center">No</th>
+                      <th width="50px" class="text-center">Wilayah Desa</th>
+                      <th width="15px" class="text-center">Warna</th>
+                      <th width="150px" class="text-center">Geojson</th>
+                      <th width="10px"  class="text-center">Action</th>
                     </tr>
                   </thead>
 
@@ -37,6 +38,7 @@
                       <td class="text-center">{{ $no++}}</td>
                       <td>{{ $data->wilayah_desa }}</td>
                       <td style="background-color: {{ $data->warna }}"></td>
+                      <td>{{ $data->geojson }}</td>
                       <td>
                       <a href="/wilayah_desa/edit/{{ $data->id_wilayahdesa}}" class="btn btn-sm btn-flat btn-warning"><i class="fa fa-edit"></i></a>
                         <button class="btn btn-sm btn-flat btn-danger" data-toggle="modal" data-target="#delete{{ $data->id_wilayahdesa }}"><i class="fa fa-trash"></i></button>
@@ -76,12 +78,8 @@
       </div>
 
           @endforeach
-
-       
-
-        
-
 @endsection
 
 <!-- bootstrap color picker -->
 <script src="{{ asset('AdminLTE') }}/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+

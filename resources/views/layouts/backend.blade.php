@@ -176,7 +176,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <li class="nav-item">
               <a href="/data_lahan" class="nav-link {{ request()->is('data_lahan') ? 'active' : ''}}">
-                <i class="nav-icon fas fa-map-marker"></i>
+                <i class="nav-icon fas fa-sitemap"></i>
                 <p>Data Lahan</p>
               </a>
             </li>
@@ -191,50 +191,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <li class="nav-item">
               <a href="/wilayah_banjir" class="nav-link {{ request()->is('wilayah_banjir') ? 'active' : ''}}">
-                <i class="nav-icon fas fa-user"></i>
+                <i class="nav-icon fas fa-cloud"></i>
                 <p>Rawan Banjir</p>
               </a>
             </li>
 
             <li class="nav-item">
               <a href="/prediksi_luas" class="nav-link {{ request()->is('prediksi_luas') ? 'active' : ''}}">
-                <i class="nav-icon fas fa-user"></i>
+                <i class="nav-icon fas fa-globe"></i>
                 <p>Prediksi Luas Lahan</p>
               </a>
             </li>
 
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link ">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                  Starter Pages
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="#" class="nav-link active">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Active Page</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Inactive Page</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                  Simple Link
-                  <span class="right badge badge-danger">New</span>
-                </p>
-              </a>
-            </li>
+           
           </ul>
         </nav>
         <!-- /.sidebar-menu -->

@@ -8,7 +8,7 @@
                 <h3 class="card-title">{{$title}}</h3>
 
                 <div class="card-tools">
-                  <a href="/prediksi_luas" type="button" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i>Index</a>
+                  <a href="/prediksi_luas" type="button" class="btn btn-primary btn-sm btn-flat" >index</a>
                   <a href="/prediksi_luas/utm" type="button" class="btn btn-primary btn-sm btn-flat" >Utm</a>
                   <a href="/prediksi_luas/shoelace" type="button" class="btn btn-primary btn-sm btn-flat" >Shoelace</a>
                 </div>
@@ -30,7 +30,8 @@
                       <th class="text-center">Nama Lahan</th>
                       <th class="text-center">Luas</th>
                       <th width="100px" class="text-center">Geojson</th>
-                      <th class="text-center">UTM</th>
+                      <th width="100px" class="text-center">UTM</th>
+                      <th class="text-center">SHOELACE</th>
                     </tr>
                   </thead>
 
@@ -44,6 +45,7 @@
                       <td>{{ $data->luas }}</td>
                       <td>{{ $data->geojson }}</td>
                       <td>{{ $data->utm }}</td>
+                      <td>{{ $data->shoelace }}</td>
                       </tr>
                     @endforeach
                   </tbody>

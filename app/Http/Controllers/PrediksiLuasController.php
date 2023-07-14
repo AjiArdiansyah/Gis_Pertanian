@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\DataLahanModel;
 use App\Models\PemilikLahanModel;
 use App\Models\PrediksiLuasModel;
+use App\Models\WilayahDesaModel;
 
 use Illuminate\Support\Facades\DB;
 
@@ -27,12 +28,15 @@ class PrediksiLuasController extends Controller
     protected $PemilikLahanModel;
     protected $DataLahanModel;
     protected $PrediksiLuasModel;
+    protected $WilayahDesaModel;
 
     public function __construct()
     {
         $this->PemilikLahanModel = new PemilikLahanModel();
         $this->DataLahanModel = new DataLahanModel();
         $this->PrediksiLuasModel = new PrediksiLuasModel();
+        $this->WilayahDesaModel = new WilayahDesaModel();
+
         //proteksi
         $this->middleware('auth');
     }
@@ -46,6 +50,31 @@ class PrediksiLuasController extends Controller
             'datalahan' => $this->DataLahanModel->AllData(),
         ];
         return view('Admin.prediksiluas.v_index', $data);
+        return view('Admin.prediksiluas.v_utm', $data);
+    }
+
+    public function dataUTM()
+    {
+        $data = [
+            'title' => 'Data Prediksi Luas',
+            'prediksiluas' => $this->PrediksiLuasModel->AllData(),
+            'pemiliklahan' => $this->PemilikLahanModel->AllData(),
+            'datalahan' => $this->DataLahanModel->AllData(),
+        ];
+        //return view('Admin.prediksiluas.v_index', $data);
+        return view('Admin.prediksiluas.v_utm', $data);
+    }
+
+    public function dataSHOELACE()
+    {
+        $data = [
+            'title' => 'Data Prediksi Luas',
+            'prediksiluas' => $this->PrediksiLuasModel->AllData(),
+            'pemiliklahan' => $this->PemilikLahanModel->AllData(),
+            'datalahan' => $this->DataLahanModel->AllData(),
+        ];
+        //return view('Admin.prediksiluas.v_index', $data);
+        return view('Admin.prediksiluas.v_shoelace', $data);
     }
 
     //Tambah data
@@ -158,7 +187,7 @@ class PrediksiLuasController extends Controller
 
     public function delete($id_prediksiluas)
     {
-        $this->DataLahanModel->DeleteData($id_prediksiluas);
+        $this->PrediksiLuasModel->DeleteData($id_prediksiluas);
         return redirect()->route('prediksi_luas')->with('pesan', 'Data Berhasil Delete');
     }
 
@@ -189,6 +218,21 @@ class PrediksiLuasController extends Controller
         return response()->json($pemiliklahan);
     }
 
+    public function get_datalahan()
+    {
+        $datalahan = $this->DataLahanModel->AllData();
+
+
+        return response()->json($datalahan);
+    }
+
+    public function get_wilayahdesa()
+    {
+        $datalahan = $this->WilayahDesaModel->AllData();
+
+
+        return response()->json($datalahan);
+    }
 
     public function getid_luas($id)
     {
