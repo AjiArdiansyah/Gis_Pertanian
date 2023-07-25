@@ -41,14 +41,14 @@ class PemilikLahanController extends Controller
             'nama_pemilik' => 'required',
             'alamat' => 'required',
             'tanggal_lahir' => 'required',
-            'keterangan' => 'required',
+            'keterangan' => '',
 
         ],
         [
             'nama_pemilik.required' => 'Wajib Diisi !!!',
             'alamat.required' => 'Wajib Diisi !!!',
             'tanggal_lahir.required' => 'Wajib Diisi !!!',
-            'keterangan.required' => 'Wajib Diisi !!!',
+            //'keterangan.required' => 'Wajib Diisi !!!',
         ]
     );
 
@@ -80,14 +80,14 @@ class PemilikLahanController extends Controller
             'nama_pemilik' => 'required',
             'alamat' => 'required',
             'tanggal_lahir' => 'required',
-            'keterangan' => 'required',
+            //'keterangan' => 'required',
 
         ],
         [
             'nama_pemilik.required' => 'Wajib Diisi !!!',
             'alamat.required' => 'Wajib Diisi !!!',
             'tanggal_lahir.required' => 'Wajib Diisi !!!',
-            'keterangan.required' => 'Wajib Diisi !!!',
+            //'keterangan.required' => 'Wajib Diisi !!!',
         ]
     );
 

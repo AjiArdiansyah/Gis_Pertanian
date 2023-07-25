@@ -54,7 +54,7 @@
                         <!-- text input -->
                         <div class="form-group">
                             <label>Keterangan</label>
-                            <input type="text" name="keterangan" class="form-control" placeholder="Password">
+                            <input type="text" name="keterangan" class="form-control" placeholder="Keterangan">
                             <div class="text-danger">
                                 @error('keterangan')
                                 {{$message}}

@@ -32,13 +32,14 @@
 
   var wilayah_desa = L.layerGroup();
   var data_lahan = L.layerGroup();
+  var wilayah_banjir = L.layerGroup();
 
 
   var map = L.map('map', {
     drawControl: true,
     center: [-7.250043590465663, 111.94933296451791],
     zoom: 17,
-    layers: [peta1, wilayah_desa, data_lahan]
+    layers: [peta1, wilayah_desa, data_lahan, wilayah_banjir]
   });
 
   var baseMaps = {
@@ -51,6 +52,7 @@
   var overlayer = {
     "WilayahDesa": wilayah_desa,
     "DataLahan": data_lahan,
+    "WilayahBanjir":wilayah_banjir,
 
   };
 
@@ -130,6 +132,53 @@
       }
     });
   });
+
+
+  $(document).ready(function() {
+    console.log("tes");
+
+    $.ajax({
+      url: '/get-wilayahbanjir/',
+      type: 'GET',
+      dataType: 'json',
+      success: function(data) {
+        var datarawanbanjir = data;
+        var wkt = [];
+        var wktObj = [];
+        var temp = [];
+        var detail = '';
+
+
+        $.each(datarawanbanjir, function(i, d) {
+          var gjson = d['geojson'];
+
+          console.log('tes');
+          console.log(gjson);
+
+          var geojson = JSON.parse(gjson);
+
+          var polygonLayer = L.geoJSON(geojson, {
+        style: function(feature) {
+          return {
+            fillColor: d['warna'],
+            color: 'white',
+            weight: 2,
+            opacity: 0.1,
+            fillOpacity: 0.4
+          };
+        },
+        onEachFeature: function(feature, layer) {
+          var namaLabel = d['wilayah_banjir'];
+          layer.bindPopup(namaLabel);
+        }
+      }).addTo(wilayah_banjir);
+
+        });
+      }
+    });
+  });
+
+
 
   var layerControl = L.control.layers(baseMaps, overlayer).addTo(map);
   L.control.layers(baseMaps).addTop(map);

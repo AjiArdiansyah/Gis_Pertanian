@@ -26,7 +26,7 @@
                       <th class="text-center">No</th>
                       <th class="text-center">Nama Lahan</th>
                       <th class="text-center">Pemilik Lahan</th>
-                      <th class="text-center">Luas</th>
+                      <th class="text-center">Luas M²</th>
                       <th class="text-center">Gambar</th>
                       <th width="100px" class="text-center">Geojson</th>
                       <th class="text-center">Action</th>

@@ -7,6 +7,7 @@ use App\Models\DataLahanModel;
 use App\Models\PemilikLahanModel;
 use App\Models\PrediksiLuasModel;
 use App\Models\WilayahDesaModel;
+use App\Models\WilayahBanjirModel;
 
 use Illuminate\Support\Facades\DB;
 
@@ -29,6 +30,7 @@ class PrediksiLuasController extends Controller
     protected $DataLahanModel;
     protected $PrediksiLuasModel;
     protected $WilayahDesaModel;
+    protected $WilayahBanjirModel;
 
     public function __construct()
     {
@@ -36,6 +38,7 @@ class PrediksiLuasController extends Controller
         $this->DataLahanModel = new DataLahanModel();
         $this->PrediksiLuasModel = new PrediksiLuasModel();
         $this->WilayahDesaModel = new WilayahDesaModel();
+        $this->WilayahBanjirModel = new WilayahBanjirModel();
 
         //proteksi
         $this->middleware('auth');
@@ -228,10 +231,18 @@ class PrediksiLuasController extends Controller
 
     public function get_wilayahdesa()
     {
-        $datalahan = $this->WilayahDesaModel->AllData();
+        $wilayahdesa = $this->WilayahDesaModel->AllData();
 
 
-        return response()->json($datalahan);
+        return response()->json($wilayahdesa);
+    }
+
+    public function get_wilayahbanjir()
+    {
+        $wilayahbanjir = $this->WilayahBanjirModel->AllData();
+
+
+        return response()->json($wilayahbanjir);
     }
 
     public function getid_luas($id)

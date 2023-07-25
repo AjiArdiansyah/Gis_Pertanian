@@ -122,6 +122,7 @@ Route::get('/get-geojson/{id}', [PrediksiLuasController::class, 'getid_geojson']
 
 Route::get('/get-datalahan', [PrediksiLuasController::class, 'get_datalahan']);
 Route::get('/get-wilayahdesa', [PrediksiLuasController::class, 'get_wilayahdesa']);
+Route::get('/get-wilayahbanjir', [PrediksiLuasController::class, 'get_wilayahbanjir']);
 
 
 
