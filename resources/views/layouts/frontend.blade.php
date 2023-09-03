@@ -34,6 +34,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script> <!-- Tambahkan skrip Leaflet -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" /> <!-- Tambahkan stylesheet Leaflet -->
 
+<!-- Chart -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
 </head>
 <body class="hold-transition layout-top-nav">
 <div class="wrapper">

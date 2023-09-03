@@ -65,7 +65,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 
-  
+  <!-- Chart-->
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <script src="https://code.highcharts.com/10/highcharts.js"></script>
 
   <!-- jQuery -->
 <script src="{{ asset('AdminLTE/plugins/jquery/jquery.min.js') }}"></script>

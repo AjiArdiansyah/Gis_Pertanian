@@ -130,3 +130,6 @@ Route::get('/get-wilayahbanjir', [PrediksiLuasController::class, 'get_wilayahban
 //rumus
 Route::get('/rumus_test', [RumusController::class, 'index'])->name('rumus');
 Route::get('/utm', [RumusController::class, 'utm'])->name('utm');
+
+//
+Route::get('/grafik/shoelace', [PrediksiLuasController::class, 'grafikshoelace'])->name('grafik.shoelace');

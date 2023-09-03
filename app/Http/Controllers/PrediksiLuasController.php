@@ -333,5 +333,38 @@ class PrediksiLuasController extends Controller
 
     }
 
+   
+
+    public function grafikshoelace()
+    { //$datshoelace = $this->PrediksiLuasModel->getPrediksi($id);
+        $shoelaceData = DB::table('tbl_prediksiluas')
+        ->select(DB::raw('MONTH(tanggal) AS month'), DB::raw('SUM(shoelace) AS total_shoelace'))
+        ->groupBy(DB::raw('MONTH(tanggal)'))
+        ->get();
+
+    // Create an array to hold the shoelace data for each month
+    $shoelaceByMonth = [];
+    
+    // Initialize the shoelace data for all months to zero
+    for ($i = 1; $i <= 12; $i++) {
+        $shoelaceByMonth[$i] = 0.00;
+    }
+    
+    // Fill in the shoelace data for the months where it exists
+    foreach ($shoelaceData as $item) {
+        $month = $item->month;
+        //$totalShoelace = $item->total_shoelace;
+        $totalShoelace = (float)number_format($item->total_shoelace, 2, '.', ''); // Format to two decimal places as float and round down
+        //$totalShoelace = number_format($item->total_shoelace, 2); // Format to two decimal places
+        $shoelaceByMonth[$month] = $totalShoelace;
+    }
+
+    // Convert the shoelace data to an array
+    $shoelaceArray = array_values($shoelaceByMonth);
+
+    return response()->json($shoelaceArray);
+}
+       
+
     
 }
