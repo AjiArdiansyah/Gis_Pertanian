@@ -131,5 +131,7 @@ Route::get('/get-wilayahbanjir', [PrediksiLuasController::class, 'get_wilayahban
 Route::get('/rumus_test', [RumusController::class, 'index'])->name('rumus');
 Route::get('/utm', [RumusController::class, 'utm'])->name('utm');
 
-//
+//grafik
 Route::get('/grafik/shoelace', [PrediksiLuasController::class, 'grafikshoelace'])->name('grafik.shoelace');
+Route::get('/grafik/perubahan', [PrediksiLuasController::class, 'grafikperubahan'])->name('grafik.perubahan');
+Route::get('/grafik/totalkeseluruhan', [PrediksiLuasController::class, 'grafiktotalkeseluruhan'])->name('grafik.totalkeseluruhan');

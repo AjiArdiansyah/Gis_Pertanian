@@ -19,7 +19,17 @@
             <form action="/prediksi_luas/update/{{ $prediksiluas->id_prediksiluas}}" method="POST" enctype="multipart/form-data">
                 @csrf
 
-                <div class="row">
+                <div class="form-group">
+                  <label>Tanggal Lahir</label>
+                  <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                        <input name="tanggal" type="date" value="{{ $prediksiluas->tanggal}}" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+                  </div>
+
+                <div class="col-sm-12">
                     <div class="col-sm-12">
                         <!-- text input -->
                         <div class="form-group">

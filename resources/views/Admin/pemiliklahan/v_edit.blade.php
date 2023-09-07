@@ -33,6 +33,7 @@
                         @enderror
                     </div>
                   </div>
+                  
                   <div class="form-group">
                   <label>Tanggal Lahir</label>
                   <div class="input-group date" id="reservationdate" data-target-input="nearest">
@@ -42,6 +43,7 @@
                         </div>
                     </div>
                   </div>
+
                   <div class="form-group">
                     <label for="exampleInputPassword1">Keterangan</label>
                     <input name="keterangan" value="{{ $pemiliklahan->keterangan}}" class="form-control" id="exampleInputPassword1" placeholder="Keterangan">
