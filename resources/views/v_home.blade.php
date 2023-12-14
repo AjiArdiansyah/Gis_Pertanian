@@ -60,7 +60,8 @@
 </div>
 
 <div id="container" style="width:100%; height:400px;"></div>
-<div id="container2" style="width:100%; height:400px;"></div>
+
+
 <div id="container3" style="width:100%; height:400px;"></div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -100,88 +101,40 @@ $(document).ready(function() {
     });
 });
 
+
+
 $(document).ready(function() {
-            $.ajax({
-                url: '/grafik/perubahan',
-                type: 'GET',
-                dataType: 'json',
-                success: function(data) {
-                    // Pastikan data yang diterima memiliki format yang benar
-                    if (data && data.labels && data.data) {
-                        Highcharts.chart('container2', {
-                            chart: {
-                                type: 'area' // Menggunakan grafik area untuk perubahan
-                            },
-                            title: {
-                                text: 'Grafik Perubahan Bulanan'
-                            },
-                            xAxis: {
-                                categories: data.labels, // Label bulan
-                                crosshair: true
-                            },
-                            yAxis: {
-                                title: {
-                                    text: 'Perubahan'
-                                }
-                            },
-                            series: [{
-                                name: 'Perubahan',
-                                data: data.data // Data perubahan
-                            }]
-                        });
-                    } else {
-                        // Tampilkan pesan jika data tidak sesuai
-                        console.error('Data tidak sesuai atau kosong.');
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error('Terjadi kesalahan dalam permintaan AJAX:', error);
-                }
-            });
-        });
-
-
-        $(document).ready(function() {
     $.ajax({
-        url: '/grafik/totalkeseluruhan', // Sesuaikan dengan rute yang Anda tentukan di Laravel
+        url: '/grafik/totalkeseluruhan',
         type: 'GET',
         dataType: 'json',
         success: function(data) {
-            // Pastikan data yang diterima memiliki format yang benar
-            if (data && data.labels && data.data) {
-                Highcharts.chart('container3', {
-                    chart: {
-                        type: 'area' // Menggunakan grafik area untuk perubahan
-                    },
+            console.log("APY");
+            console.log(data);
+            Highcharts.chart('container3', {
+                chart: {
+                    type: 'area'
+                },
+                title: {
+                    text: 'Grafik Total Keseluruhan'
+                },
+                xAxis: {
+                    categories: data.labels,
+                    crosshair: true
+                },
+                yAxis: {
                     title: {
-                        text: 'Grafik total luas'
-                    },
-                    xAxis: {
-                        categories: data.labels, // Label bulan
-                        crosshair: true
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'luas total M²'
-                        }
-                    },
-                    series: [{
-                        name: 'Perubahan',
-                        data: data.data // Data perubahan
-                    }]
-                });
-            } else {
-                // Tampilkan pesan jika data tidak sesuai
-                console.error('Data tidak sesuai atau kosong.');
-            }
-        },
-        error: function(xhr, status, error) {
-            console.error('Terjadi kesalahan dalam permintaan AJAX:', error);
+                        text: 'Luas Total M²'
+                    }
+                },
+                series: [{
+                    name: 'Total Keseluruhan',
+                    data: data.data
+                }]
+            });
         }
     });
 });
-
 </script>
-
 
 @endsection

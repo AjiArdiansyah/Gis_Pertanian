@@ -369,42 +369,6 @@ class PrediksiLuasController extends Controller
 
 
 
-public function grafikperubahan()
-{
-    // Ambil data perubahan dari database (misalnya, dari tabel 'tbl_prediksi_luas')
-    $perubahanData = DB::table('tbl_prediksiluas')
-        ->select(DB::raw('MONTH(tanggal) AS month'), DB::raw('SUM(shoelace) AS total_shoelace'))
-        ->groupBy(DB::raw('MONTH(tanggal)'))
-        ->orderBy('tanggal', 'asc')
-        ->get();
-
-     // Inisialisasi array untuk menyimpan data perubahan bulanan
-     $perubahanBulanan = [];
-     $totalSebelumnya = 0.00; // Inisialisasi total bulan sebelumnya
- 
-     // Loop melalui data perubahan
-     foreach ($perubahanData as $item) {
-         $bulan = date('M Y', strtotime('2023-' . $item->month . '-01'));
-         $totalShoelace = (float)number_format($item->total_shoelace, 2, '.', ''); // Format to two decimal places as float and round down
- 
-         // Menghitung perubahan bulanan
-         $perubahan = $totalShoelace - $totalSebelumnya;
-         $perubahanBulanan[$bulan] = number_format($perubahan, 2, '.', ''); // Format perubahan dengan desimal 2 angka
- 
-         // Mengupdate total bulan sebelumnya
-         $totalSebelumnya = $totalShoelace;
-     }
- 
-     // Ubah array perubahanBulanan ke dalam format yang sesuai untuk grafik
-     $labels = array_keys($perubahanBulanan);
-     $dataPerubahan = array_values($perubahanBulanan);
- 
-     return response()->json([
-         'labels' => $labels,
-         'data' => $dataPerubahan,
-     ]);
-}
-
 public function grafiktotalkeseluruhan()
 {
     // Ambil data perubahan dari database (misalnya, dari tabel 'tbl_prediksi_luas')
@@ -434,7 +398,8 @@ public function grafiktotalkeseluruhan()
 
     // Ubah array perubahanBulanan ke dalam format yang sesuai untuk grafik
     $labels = array_keys($perubahanBulanan);
-    $dataPerubahan = array_values($perubahanBulanan);
+   // $dataPerubahan = array_values($perubahanBulanan);
+   $dataPerubahan = array_map('floatval', array_values($perubahanBulanan)); // Cast array values to floats
 
     return response()->json([
         'labels' => $labels,

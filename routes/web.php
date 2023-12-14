@@ -133,5 +133,5 @@ Route::get('/utm', [RumusController::class, 'utm'])->name('utm');
 
 //grafik
 Route::get('/grafik/shoelace', [PrediksiLuasController::class, 'grafikshoelace'])->name('grafik.shoelace');
-Route::get('/grafik/perubahan', [PrediksiLuasController::class, 'grafikperubahan'])->name('grafik.perubahan');
+//Route::get('/grafik/perubahan', [PrediksiLuasController::class, 'grafikperubahan'])->name('grafik.perubahan');
 Route::get('/grafik/totalkeseluruhan', [PrediksiLuasController::class, 'grafiktotalkeseluruhan'])->name('grafik.totalkeseluruhan');
